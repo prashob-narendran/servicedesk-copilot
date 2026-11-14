@@ -1,0 +1,14 @@
+doc_id,title,type,url,licence
+service-catalogue,TechServ Service Catalogue and Support Queues,Internal policy (synthetic),,Own work (Group 60)
+sla-policy,TechServ SLA and Escalation Policy,Internal policy (synthetic),,Own work (Group 60)
+incident-process,TechServ Incident Management Process,Internal process (synthetic),,Own work (Group 60)
+sop-vpn,SOP – VPN and Remote Access Troubleshooting,Internal SOP (synthetic),,Own work (Group 60)
+sop-password,SOP – Password Reset and Account Lockout,Internal SOP (synthetic),,Own work (Group 60)
+sop-m365,SOP – Email and Microsoft 365 Issues,Internal SOP (synthetic),,Own work (Group 60)
+billing-policy,"TechServ Billing, Refunds and Payments Policy",Internal policy (synthetic),,Own work (Group 60)
+returns-policy,TechServ Hardware Returns and Exchanges Policy,Internal policy (synthetic),,Own work (Group 60)
+privacy-policy,TechServ Data Privacy and Security Policy for Support Staff,Internal policy (synthetic),,Own work (Group 60)
+sop-hardware,SOP – Hardware and Device Requests,Internal SOP (synthetic),,Own work (Group 60)
+outages-maintenance,TechServ Service Outages and Planned Maintenance,Internal process (synthetic),,Own work (Group 60)
+ticket-*,Past resolved tickets (English subset),Dataset,https://huggingface.co/datasets/Tobi-Bueck/customer-support-tickets,CC BY-NC 4.0
+nist-sp-800-61 (optional),NIST SP 800-61 Computer Security Incident Handling Guide,Public guide (PDF in rag/docs/public/),https://csrc.nist.gov/pubs/sp/800/61/r3/final,US Government work (public domain)

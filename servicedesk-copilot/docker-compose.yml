@@ -1,0 +1,30 @@
+services:
+  api:
+    build: .
+    image: servicedesk-copilot:1.0
+    env_file: .env
+    environment:
+      PRELOAD_MODELS: "true"
+    ports: ["8000:8000"]
+    volumes:
+      - rag_index:/app/rag/index
+      - hf_cache:/app/.cache/huggingface
+      - ./data/processed:/app/data/processed:ro
+    restart: unless-stopped
+
+  ui:
+    image: servicedesk-copilot:1.0
+    depends_on:
+      api:
+        condition: service_healthy
+    environment:
+      API_URL: http://api:8000/api/v1
+      API_KEY: ${API_KEY:-}
+      SKIP_INGEST: "true"
+    ports: ["8501:8501"]
+    command: ["streamlit", "run", "ui/streamlit_app.py", "--server.port=8501", "--server.address=0.0.0.0"]
+    restart: unless-stopped
+
+volumes:
+  rag_index:
+  hf_cache:

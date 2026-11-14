@@ -1,0 +1,20 @@
+.env
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+# large or generated artefacts
+models/*
+!models/.gitkeep
+checkpoints/
+mlruns/
+mlflow.db
+rag/index/
+data/raw/
+data/processed/*.csv
+*.zip
+.ipynb_checkpoints/
+
+# keep folder placeholders
+!reports/**/.gitkeep

@@ -1,0 +1,18 @@
+# Runtime: API + UI + RAG (Python 3.11 recommended)
+fastapi>=0.115
+uvicorn[standard]>=0.30
+pydantic>=2.7
+pydantic-settings>=2.3
+openai>=1.40
+torch>=2.3
+transformers>=4.46
+sentence-transformers>=3.0
+gliner>=0.2.13
+chromadb>=0.5.5
+langchain-text-splitters>=0.3
+pypdf>=4.0
+sentencepiece>=0.2
+protobuf>=4.25
+streamlit>=1.46
+pandas>=2.1
+requests>=2.32

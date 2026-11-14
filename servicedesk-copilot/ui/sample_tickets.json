@@ -1,0 +1,32 @@
+[
+  {
+    "name": "VPN keeps dropping (team affected)",
+    "subject": "VPN disconnects every few minutes",
+    "body": "Hi, this is Anita Rao from the finance team at Northwind Traders. Since yesterday's update the GlobalConnect VPN drops every 5 minutes for all 12 people in our team, so we cannot reach the ERP system. Month-end closing is due tomorrow. Please call me on +971 50 123 4567 or email anita.rao@northwind-traders.com."
+  },
+  {
+    "name": "Charged twice for subscription",
+    "subject": "Duplicate charge on my card",
+    "body": "Hello, I was charged twice for our annual Pro subscription renewal on 3 November. Account number ACC-778812. Please refund the duplicate payment as soon as possible. Regards, Daniel Mathew"
+  },
+  {
+    "name": "Production outage (critical)",
+    "subject": "URGENT: customer portal down",
+    "body": "Our customer portal hosted with you has been returning error 503 since 02:00. All of our customers are affected and we are losing orders. The status page shows nothing. Please treat this as critical."
+  },
+  {
+    "name": "Locked out of account",
+    "subject": "Account locked",
+    "body": "I tried to log in this morning and my account is locked after a few wrong passwords. I have a client presentation in two hours and need access to my email. My username is j.fernandes."
+  },
+  {
+    "name": "Cracked laptop screen",
+    "subject": "Broken laptop screen",
+    "body": "I dropped my laptop and the screen is cracked. It is a TechServ-supplied ThinkPad, serial PF3XK21. Is this covered by warranty, and can I get a loan laptop meanwhile?"
+  },
+  {
+    "name": "Quote for extra licences",
+    "subject": "Pricing for 50 more licences",
+    "body": "We would like to add 50 licences to our current plan from next quarter. Could you send us a quote and let us know if there is a volume discount?"
+  }
+]

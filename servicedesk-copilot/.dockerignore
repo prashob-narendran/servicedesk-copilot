@@ -1,0 +1,13 @@
+.env
+.venv
+venv
+__pycache__
+.pytest_cache
+checkpoints
+mlruns
+mlflow.db
+data/processed
+notebooks
+reports
+*.zip
+.git

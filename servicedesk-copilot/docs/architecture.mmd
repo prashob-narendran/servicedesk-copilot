@@ -1,0 +1,27 @@
+%%{init: {"flowchart": {"nodeSpacing": 30, "rankSpacing": 40, "padding": 8}, "themeVariables": {"fontSize": "18px"}}}%%
+flowchart TB
+    U["Support agent<br/>Streamlit UI"] -->|REST / JSON| API["FastAPI service /api/v1<br/>Docker container"]
+
+    subgraph PIPE["/triage pipeline"]
+        R["1. PII redaction + NER<br/>GLiNER / Presidio"] --> C["2. Queue classification<br/>fine-tuned DeBERTa-v3"]
+        C --> P["3. Priority + sentiment"]
+        P --> S["4. Summarisation<br/>LLM via API"]
+    end
+
+    subgraph RAG["RAG pipeline"]
+        E["Retriever<br/>bge-small-en + Chroma"] --> L["LLM answer<br/>with citations"]
+    end
+
+    API -->|/triage| R
+    S -->|"5. draft reply"| E
+    API -->|/chat| E
+
+    KB["Knowledge base<br/>SOPs, SLA policy,<br/>IT guides, resolved tickets"] -.ingest.-> E
+    HF["Hugging Face Hub<br/>fine-tuned model<br/>tracked in MLflow"] -.load.-> C
+
+    classDef core fill:#E8F0FB,stroke:#2F5597,color:#1F2937
+    classDef ext fill:#F3F4F6,stroke:#6B7280,color:#1F2937
+    class API,R,C,P,S,E,L core
+    class U,KB,HF ext
+    style PIPE fill:#FFFFFF,stroke:#9CA3AF
+    style RAG fill:#FFFFFF,stroke:#9CA3AF
