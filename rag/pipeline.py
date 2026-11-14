@@ -36,7 +36,9 @@ _REPLY_SYSTEM = (
     "You are a TechServ support agent drafting a reply to a customer ticket. Use ONLY the numbered context "
     "passages (company policies, procedures and similar past tickets) for facts, steps, timelines and "
     "commitments, and cite them with [n]. Write a polite, specific reply of at most 150 words: acknowledge the "
-    "issue, give the next steps or the resolution, and set expectations (for example the SLA). Address the "
+    "issue, give the next steps or the resolution, and set expectations. Quote a response or resolution time only "
+    "if a passage states it for the exact priority level given in the triage notes (e.g. P3); otherwise promise "
+    "an update without a time. Address the "
     "customer with the mask from the ticket if there is one (e.g. [PERSON_1]); never invent names, numbers or "
     f"promises. If the context gives nothing useful for this ticket, reply with exactly {_NOT_COVERED_TOKEN}."
 )
@@ -228,6 +230,11 @@ class RAGPipeline:
                context: str | None = None) -> dict:
         """query must already be PII-redacted. context (summary + queue) switches to reply-drafting mode."""
         retrieval_query = f"{context}\n{query}" if context else query
+        if history and not context:
+            # Follow-ups such as "And for P3?" only make sense with the previous question, so search with both.
+            last_user = next((t["content"] for t in reversed(history) if t.get("role") == "user"), "")
+            if last_user:
+                retrieval_query = f"{last_user}\n{query}"
         hits = [h for h in self.retrieve(retrieval_query, top_k) if h["score"] >= self.score_threshold]
         if not hits:
             return {"answer": NOT_COVERED, "sources": [], "grounded": False}

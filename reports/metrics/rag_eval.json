@@ -1,0 +1,20 @@
+{
+  "questions": 27,
+  "in_scope": 22,
+  "out_of_scope": 5,
+  "top_k": 4,
+  "score_threshold": 0.5,
+  "embedding_model": "BAAI/bge-small-en-v1.5",
+  "llm": "groq:openai/gpt-oss-20b",
+  "judge": "openai/gpt-oss-120b",
+  "hit_rate@4": 0.955,
+  "top1_score_in_scope_min": 0.6728,
+  "top1_score_out_of_scope_max": 0.6749,
+  "suggested_threshold": null,
+  "faithfulness": 1.0,
+  "answer_relevancy": 0.797,
+  "context_precision": 1.0,
+  "answered_in_scope": 0.909,
+  "refused_out_of_scope": 1.0,
+  "latency_ms_median": 617
+}

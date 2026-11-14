@@ -1,0 +1,13 @@
+run,ticket,queue,priority,grounded_reply,total_ms,redact,classify,sentiment,summarise,draft_reply
+1,VPN keeps dropping (team affected),Technical Support,371,True,2995,567,371,209,475,997
+1,Charged twice for subscription,Billing and Payments,259,True,2153,384,263,135,393,708
+1,Production outage (critical),Returns and Exchanges,260,True,2421,447,261,118,569,762
+1,Locked out of account,Product Support,218,True,2351,418,208,127,399,975
+1,Cracked laptop screen,Product Support,213,True,2274,449,244,154,380,824
+1,Quote for extra licences,Billing and Payments,233,True,2317,345,250,94,571,820
+2,VPN keeps dropping (team affected),Technical Support,360,True,2874,586,354,193,457,916
+2,Charged twice for subscription,Billing and Payments,372,True,2888,630,394,138,418,926
+2,Production outage (critical),Returns and Exchanges,330,False,2746,588,381,134,597,709
+2,Locked out of account,Product Support,263,True,5493,534,337,99,474,3781
+2,Cracked laptop screen,Product Support,338,True,8211,585,394,146,803,5937
+2,Quote for extra licences,Billing and Payments,315,False,7179,356,276,128,329,5768

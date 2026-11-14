@@ -1,0 +1,38 @@
+id,question,in_scope,top1_score,hit,latency_ms,grounded,answer,refusal_correct,faithfulness,answer_relevancy,context_precision
+q01,What is the first response target for a P1 ticket?,True,0.6921,True,3979,True,"The first response target for a P1 ticket is 15 minutes, 24x7.[1]",True,1.0,0.805,1.0
+q02,How long do we have to resolve a P3 ticket?,True,0.7143,False,677,False,The knowledge base doesn't cover this question. Please escalate to a senior agent or check with the relevant team.,False,,,
+q03,When does the SLA clock pause?,True,0.7311,True,682,True,The SLA clock pauses while a ticket is in “Waiting for customer” status. [1],True,1.0,0.784,1.0
+q04,How can a customer escalate a ticket?,True,0.7644,True,599,True,Customers can request escalation by replying “ESCALATE” to the ticket email or by calling the service desk. The request is logged and the shift lead responds within 1 hour.[1],True,1.0,0.757,1.0
+q05,When is a service credit given?,True,0.7352,True,539,True,A service credit is granted when more than 5% of a customer's P1 and P2 tickets in a calendar month breach the resolution target【1】.,True,1.0,0.734,1.0
+q06,What counts as a major incident and how quickly is the bridge call opened?,True,0.8302,True,524,True,"A major incident is any P1 that affects more than one customer, or any confirmed security breach. The bridge call is opened within 15 minutes of identification. [1]",True,1.0,0.884,1.0
+q07,When must the post-incident review be held?,True,0.6909,True,528,True,The post‑incident review (PIR) must be held within 5 business days. [1],True,1.0,0.888,1.0
+q08,A user's VPN disconnects every few minutes. What should I check?,True,0.8698,True,725,True,"Check the following:
+
+1. Verify the user’s Wi‑Fi is stable; suggest switching to a wired connection or a different network if possible.  
+2. Disable any power‑saving setting on the Wi‑Fi adapter: “Allow the computer to turn off this device to save power.”  
+3. Confirm the user has a working internet connection without the VPN (open any public website).  
+4. Ask for the exact error message and VPN client version.  
+5. Have the user sign out of the VPN client, restart the laptop, and reconnect. [1][3]",True,1.0,0.751,1.0
+q09,When should a VPN issue be escalated to Level 2?,True,0.7425,True,644,True,Escalate a VPN issue to Level 2 if first‑line checks do not resolve it within 30 minutes【1】.,True,1.0,0.853,1.0
+q10,How do I verify identity before a manual password reset?,True,0.8146,True,649,True,"Verify identity by requiring the user to answer two of the three registered security questions, or by confirming that the request comes from their line manager’s verified email address. Never reset a password based on a phone call alone. [1]",True,1.0,0.77,1.0
+q11,Can I send a temporary password by email?,True,0.6728,True,822,True,No – the SOP explicitly states that passwords must never be sent by email or chat; they should be sent only by SMS to the registered mobile number.[1],True,1.0,0.706,1.0
+q12,How long does an account stay locked after failed sign-ins?,True,0.8535,True,623,True,Accounts lock for 30 minutes after 5 failed sign‑in attempts. [1],True,1.0,0.791,1.0
+q13,Outlook is not receiving emails but webmail works. What should the user do?,True,0.837,True,487,True,"1. Restart Outlook to refresh the desktop client.  
+2. If the problem persists, run a repair on the Office installation.  
+[1]",True,1.0,0.679,1.0
+q14,A user entered their password on a phishing page. What are the steps?,True,0.7732,True,755,True,"1. Instruct the user not to click any links or open any attachments in the suspected phishing email.  
+2. Ask the user to use the “Report phishing” button to report the email.  
+3. If the user has already entered their password on the suspicious page, reset the password immediately, revoke all active sessions, and notify Security about the potential incident. [1]",True,1.0,0.753,1.0
+q15,How fast is a confirmed duplicate charge refunded?,True,0.8547,True,532,True,Confirmed duplicate charges are refunded in full within 5 business days of confirmation. [1],True,1.0,0.879,1.0
+q16,Can a customer get a refund on an annual subscription after 20 days?,True,0.8045,True,684,True,"Yes – after 14 days an annual subscription can still be refunded pro‑rated for the unused full months, minus a 10% administration fee [1].",True,1.0,0.802,1.0
+q17,When is an account suspended after a failed payment?,True,0.89,True,568,True,The account is suspended if payment has not succeeded 14 days after the due date.[1],True,1.0,0.857,1.0
+q18,What is the return window for unused hardware?,True,0.8218,True,666,True,The return window for unused hardware is within 30 days of delivery for a full refund. [1],True,1.0,0.798,1.0
+q19,Is a cracked laptop screen covered by warranty?,True,0.7732,True,390,False,The knowledge base doesn't cover this question. Please escalate to a senior agent or check with the relevant team.,False,,,
+q20,When are personal-data breaches reported to the authority?,True,0.7196,True,704,True,Personal‑data breaches are reported to the relevant data‑protection authority within 72 hours of confirmation. [1],True,1.0,0.824,1.0
+q21,When does planned maintenance happen?,True,0.7804,True,655,True,Planned maintenance takes place on Saturdays between 22:00 and 02:00 Gulf Standard Time. [1],True,1.0,0.771,1.0
+q22,Which queue handles duplicate charges?,True,0.7314,True,617,True,The Billing and Payments queue handles duplicate charges. [2],True,1.0,0.86,1.0
+q23,What is the capital of Australia?,False,0.4426,,37,False,The knowledge base doesn't cover this question. Please escalate to a senior agent or check with the relevant team.,True,,,
+q24,Recommend a good restaurant near the office for a team lunch.,False,0.5709,,590,False,The knowledge base doesn't cover this question. Please escalate to a senior agent or check with the relevant team.,True,,,
+q25,Write a Python function to reverse a linked list.,False,0.5345,,599,False,The knowledge base doesn't cover this question. Please escalate to a senior agent or check with the relevant team.,True,,,
+q26,Who won the football world cup in 2018?,False,0.47,,66,False,The knowledge base doesn't cover this question. Please escalate to a senior agent or check with the relevant team.,True,,,
+q27,What is the stock price of TechServ today?,False,0.6749,,450,False,The knowledge base doesn't cover this question. Please escalate to a senior agent or check with the relevant team.,True,,,

@@ -39,7 +39,7 @@ def main() -> None:
             d = r.json()
             row = {"run": run + 1, "ticket": t["name"], "queue": (d["queue"] or {}).get("label"),
                    "priority": (d["priority"] or {}).get("label"), "grounded_reply": (d["draft_reply"] or {}).get("grounded"),
-                   "total_ms": d["meta"]["latency_ms"], **d["step_latency_ms"]}
+                   "total_ms": d["meta"]["latency_ms"], **{f"{k}_ms": v for k, v in d["step_latency_ms"].items()}}
             rows.append(row)
             print(f"run {run + 1} · {t['name'][:40]:40s} · {row['total_ms']} ms · {row['queue']} · {row['priority']}")
 
@@ -50,7 +50,7 @@ def main() -> None:
         w.writeheader()
         w.writerows(rows)
     measured = [r for r in rows if r["run"] > 1] or rows  # ignore the warm-up pass when possible
-    steps = ["redact", "classify", "priority", "sentiment", "summarise", "draft_reply", "total_ms"]
+    steps = ["redact_ms", "classify_ms", "priority_ms", "sentiment_ms", "summarise_ms", "draft_reply_ms", "total_ms"]
     md = ["| Step | Median (ms) | p95 (ms) |", "|---|---|---|"]
     for s in steps:
         vals = [r[s] for r in measured if s in r]

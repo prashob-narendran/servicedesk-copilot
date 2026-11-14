@@ -14,6 +14,9 @@ from app.schemas import TriageRequest
 
 log = logging.getLogger("copilot")
 
+# How the classifier's labels map to the SLA policy's levels (see rag/docs/02-sla-and-escalation-policy.md)
+SLA_LEVEL = {"high": "P1 or P2", "medium": "P3", "low": "P4"}
+
 
 def run_triage(req: TriageRequest, svc: Services) -> dict:
     out: dict = {"ticket_id": req.ticket_id, "redacted_text": None, "entities": None, "queue": None,
@@ -69,7 +72,8 @@ def run_triage(req: TriageRequest, svc: Services) -> dict:
         notes = "; ".join(filter(None, [
             f"summary: {summary}" if summary else None,
             f"queue: {out['queue']['label']}" if out["queue"] else None,
-            f"priority: {out['priority']['label']}" if out["priority"] else None,
+            (f"priority: {out['priority']['label']} ({SLA_LEVEL.get(out['priority']['label'], '')} in the SLA policy)"
+             if out["priority"] else None),
         ])) or "customer support ticket"
         reply = step("draft_reply", lambda: svc.rag.answer(safe_text, context=notes))
         if reply:

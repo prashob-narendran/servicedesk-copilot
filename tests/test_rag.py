@@ -47,3 +47,12 @@ def test_ticket_csv_ingestion(tmp_path, rag):
     stats = rag.ingest([str(csv_path)])
     assert stats == {"documents": 1, "chunks": 1}
     assert rag.count() == before + 1
+
+
+
+def test_follow_up_question_uses_previous_turn_for_retrieval(rag):
+    history = [{"role": "user", "content": "What is the first response target for a P1 ticket in the SLA policy?"},
+               {"role": "assistant", "content": "15 minutes [1]"}]
+    res = rag.answer("And for P3?", history=history)
+    assert res["grounded"] is True
+    assert any(src["doc_id"] == "sla-policy" for src in res["sources"])

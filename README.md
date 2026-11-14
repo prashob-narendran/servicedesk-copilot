@@ -30,7 +30,7 @@ ui/             Streamlit front-end and sample tickets
 data/           prepare.py: download, clean, split, EDA charts
 notebooks/      colab_finetune.ipynb: runs all of Part II on a free Colab GPU
 scripts/        benchmark_triage.py (latency table), docker entrypoint, notebook generator
-tests/          23 offline tests (API, redaction, RAG, LLM config)
+tests/          24 offline tests (API, redaction, RAG, LLM config)
 reports/        generated metrics (JSON/Markdown) and figures for the report
 ```
 
@@ -40,7 +40,7 @@ reports/        generated metrics (JSON/Markdown) and figures for the report
 python -m venv .venv && source .venv/bin/activate      # Windows: .venv\Scripts\activate
 pip install -r requirements-dev.txt
 cp .env.example .env                                    # add GROQ_API_KEY (free), set the model IDs
-python -m pytest                                        # 23 tests, about 2 seconds, no internet needed
+python -m pytest                                        # 24 tests, about 5 seconds, no internet needed
 ```
 
 ### 1. Fine-tune the models (Part II): Google Colab, about 1 hour
