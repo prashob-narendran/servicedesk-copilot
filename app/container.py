@@ -112,5 +112,6 @@ class Services:
                 out[comp] = f"error: {self._errors[comp][:200]}"
             else:
                 out[comp] = "not loaded yet (loads on first use)"
-        out["llm"] = f"configured ({self.settings.llm_model})" if self.llm.configured else "missing OPENAI_API_KEY"
+        out["llm"] = (f"configured ({getattr(self.llm, 'provider', 'llm')}: {self.llm.model})" if self.llm.configured
+                      else f"missing {getattr(self.llm, 'key_env', 'API key')}")
         return out

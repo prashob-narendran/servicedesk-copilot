@@ -14,9 +14,12 @@ class Settings(BaseSettings):
     preload_models: bool = False          # load all models at start-up instead of on first use
     device: str = "cpu"                   # "cpu" or "cuda"
 
-    # --- LLM (OpenAI) ---
+    # --- LLM: "groq" (free tier, no card needed) or "openai" ---
+    llm_provider: str = "groq"
+    groq_api_key: str | None = None
     openai_api_key: str | None = None
-    llm_model: str = "gpt-4o-mini"        # any current OpenAI chat model works
+    llm_model: str | None = None          # default: llama-3.1-8b-instant (groq) / gpt-4o-mini (openai)
+    llm_base_url: str | None = None       # optional: any other OpenAI-compatible endpoint
     llm_temperature: float | None = 0.2   # set empty for models that do not accept temperature
     llm_timeout_s: float = 30.0
 

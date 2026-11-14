@@ -113,3 +113,16 @@ def test_model_not_ready_returns_503(client, services):
     r = client.post("/api/v1/classify", json=TICKET)
     assert r.status_code == 503 and r.json()["error"]["code"] == "MODEL_NOT_READY"
     assert client.get("/api/v1/health").json()["status"] == "degraded"
+
+
+def test_llm_provider_configuration():
+    from app.config import Settings
+    from app.llm import LLMClient
+
+    groq = LLMClient(Settings(_env_file=None, llm_provider="groq", groq_api_key="gsk_x"))
+    assert groq.base_url == "https://api.groq.com/openai/v1" and groq.model == "llama-3.1-8b-instant"
+    assert groq.configured
+    oa = LLMClient(Settings(_env_file=None, llm_provider="openai", openai_api_key=None))
+    assert oa.base_url is None and oa.model == "gpt-4o-mini" and not oa.configured
+    custom = LLMClient(Settings(_env_file=None, llm_provider="groq", groq_api_key="k", llm_model="llama-3.3-70b-versatile"))
+    assert custom.model == "llama-3.3-70b-versatile"

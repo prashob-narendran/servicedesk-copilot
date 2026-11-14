@@ -35,7 +35,7 @@ class PriorityService:
 
         from classifier.predict import TextClassifier
 
-        clf, pname = None, f"llm:{settings.llm_model}"
+        clf, pname = None, f"llm:{getattr(llm, 'model', 'llm')}"
         pid = settings.priority_model_id
         is_local = pid and pid.startswith(("models/", "./", "/"))
         if pid and (Path(pid).exists() or not is_local):  # existing local folder, or a Hub repo id

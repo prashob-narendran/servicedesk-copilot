@@ -1,6 +1,6 @@
 """Evaluate the RAG chatbot on rag/eval/questions.jsonl.
 
-    python -m rag.eval.run_eval                 # full evaluation (needs OPENAI_API_KEY)
+    python -m rag.eval.run_eval                 # full evaluation (needs the LLM key; about 30–45 min on the free Groq tier)
     python -m rag.eval.run_eval --retrieval-only  # free: retrieval hit rate + threshold calibration only
 
 Metrics (definitions follow the RAGAS framework, implemented directly with an LLM judge so the
@@ -107,7 +107,7 @@ def main() -> None:
     out_max = max(r["top1_score"] for r in out_rows) if out_rows else 0.0
     summary = {
         "questions": len(rows), "in_scope": len(in_rows), "out_of_scope": len(out_rows), "top_k": args.top_k,
-        "score_threshold": rag.score_threshold, "embedding_model": s.embedding_model_id, "llm": s.llm_model,
+        "score_threshold": rag.score_threshold, "embedding_model": s.embedding_model_id, "llm": f"{llm.provider}:{llm.model}",
         f"hit_rate@{args.top_k}": round(sum(bool(r["hit"]) for r in in_rows) / len(in_rows), 3),
         "top1_score_in_scope_min": in_min, "top1_score_out_of_scope_max": out_max,
         "suggested_threshold": round((in_min + out_max) / 2, 3) if in_min > out_max else None,

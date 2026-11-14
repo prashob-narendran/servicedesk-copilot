@@ -50,10 +50,11 @@ def zero_shot_baseline(label: str) -> dict:
               'Reply as JSON: {"label": "<one item from the list>"}')
     preds = []
     for text in sample["text"]:
-        out = llm.complete_json(system, redactor.redact(text)["redacted_text"][:3000], max_tokens=30)
+        # truncated to keep within free-tier token limits; most tickets are far shorter
+        out = llm.complete_json(system, redactor.redact(text)["redacted_text"][:1200], max_tokens=30)
         pred = str(out.get("label", "")).strip()
         preds.append(pred if pred in labels else "INVALID")
-    res = {"model": f"zero-shot {llm.model}", "label": label,
+    res = {"model": f"zero-shot LLM ({llm.model})", "label": label,
            "invalid_outputs": preds.count("INVALID"),
            "test_sample300": score(sample[label].tolist(), preds, labels)}
     save_json(res, f"baseline_zeroshot_{label}.json")
@@ -63,7 +64,7 @@ def zero_shot_baseline(label: str) -> dict:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--label", default="queue", choices=["queue", "priority"])
-    ap.add_argument("--zero-shot", action="store_true", help="also run the LLM zero-shot baseline (needs OPENAI_API_KEY)")
+    ap.add_argument("--zero-shot", action="store_true", help="also run the LLM zero-shot baseline (needs GROQ_API_KEY or OPENAI_API_KEY)")
     args = ap.parse_args()
     r = tfidf_baseline(args.label)
     print(f"TF-IDF + LR   test macro-F1 {r['test']['macro_f1']:.3f}  accuracy {r['test']['accuracy']:.3f}")

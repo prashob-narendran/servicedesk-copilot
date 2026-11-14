@@ -8,7 +8,7 @@ cells = [
        "**Runtime → Change runtime type → T4 GPU** before you start. The whole notebook takes about 45–75 minutes.\n\n"
        "What it produces (all needed for the report):\n"
        "1. Clean train / validation / test splits and EDA charts\n"
-       "2. Two baselines: TF-IDF + logistic regression, and a zero-shot LLM\n"
+       "2. Two baselines: TF-IDF + logistic regression, and a zero-shot LLM (free Groq API)\n"
        "3. Fine-tuned DeBERTa-v3 **queue** classifier and **priority** classifier, logged to MLflow\n"
        "4. Confusion matrices, training curves, before/after comparison tables\n"
        "5. Models pushed to the Hugging Face Hub (used by the app) and a zip of all results"),
@@ -23,10 +23,12 @@ cells = [
          "# !unzip -q servicedesk-copilot.zip"),
     code("%cd /content/servicedesk-copilot\n!pip install -q -r requirements-train.txt"),
     md("## 2. Secrets\nAdd these in Colab's **🔑 Secrets** panel (left sidebar) and enable notebook access:\n"
-       "- `OPENAI_API_KEY` — for the zero-shot baseline\n- `HF_TOKEN` — a Hugging Face token with **write** access\n"
+       "- `GROQ_API_KEY` — free key from console.groq.com/keys, for the zero-shot baseline\n"
+       "- `HF_TOKEN` — a Hugging Face token with **write** access\n"
        "- set `HF_USER` below to your Hugging Face username"),
     code("import os\nfrom google.colab import userdata\n"
-         "os.environ[\"OPENAI_API_KEY\"] = userdata.get(\"OPENAI_API_KEY\")\n"
+         "os.environ[\"LLM_PROVIDER\"] = \"groq\"\n"
+         "os.environ[\"GROQ_API_KEY\"] = userdata.get(\"GROQ_API_KEY\")\n"
          "os.environ[\"HF_TOKEN\"] = userdata.get(\"HF_TOKEN\")\n"
          "HF_USER = \"your-hf-username\"  #@param {type:\"string\"}\n"
          "from huggingface_hub import login\nlogin(token=os.environ[\"HF_TOKEN\"])"),
@@ -36,13 +38,17 @@ cells = [
     code("from IPython.display import Image, display\n"
          "for f in [\"queue_distribution\", \"priority_distribution\", \"ticket_length\"]:\n"
          "    display(Image(f\"reports/figures/{f}.png\", width=650))"),
-    md("## 4. Baselines (the 'before' numbers)"),
-    code("!python -m classifier.baselines --label queue --zero-shot\n!python -m classifier.baselines --label priority"),
+    md("## 4. TF-IDF baselines (the 'before' numbers, about 2 minutes)"),
+    code("!python -m classifier.baselines --label queue\n!python -m classifier.baselines --label priority"),
     md("## 5. Fine-tune the queue classifier\nAbout 20–35 minutes on a T4. If you run out of time, add "
        "`--model distilroberta-base` (about 3× faster, slightly lower accuracy)."),
     code("!python -m classifier.train --label queue --push-to-hub {HF_USER}/servicedesk-queue-classifier"),
     md("## 6. Fine-tune the priority classifier"),
     code("!python -m classifier.train --label priority --push-to-hub {HF_USER}/servicedesk-priority-classifier"),
+    md("## 6b. Zero-shot LLM baseline (about 15–25 minutes)\nScores the free Groq Llama 3.1 8B model on the "
+       "fixed 300-ticket sample. It is slow only because the free tier allows 6,000 tokens per minute; the client "
+       "waits and retries automatically. The TF-IDF run is repeated in seconds so both baselines land in one file set."),
+    code("!python -m classifier.baselines --label queue --zero-shot"),
     md("## 7. Results for the report"),
     code("!python -m classifier.compare --label queue\n!python -m classifier.compare --label priority"),
     code("from IPython.display import Markdown\n"

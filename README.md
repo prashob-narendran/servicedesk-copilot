@@ -14,8 +14,8 @@ Prashob N (2025AE05006) · Radhakrishnan R (2025AF05003) · Swami Vivek Bakal (2
 | 1 | PII redaction + named-entity recognition | Regex recognisers + GLiNER (`urchade/gliner_multi_pii-v1`) | `POST /api/v1/redact` |
 | 2 | Queue classification (routing) | **Fine-tuned** `microsoft/deberta-v3-base` | `POST /api/v1/classify` |
 | 3 | Priority + customer sentiment | **Fine-tuned** priority classifier + `cardiffnlp/twitter-roberta-base-sentiment-latest` | `POST /api/v1/priority` |
-| 4 | Summarisation | OpenAI chat model, on redacted text | `POST /api/v1/summarise` |
-| 5 | Grounded reply drafting and Q&A (RAG) | `BAAI/bge-small-en-v1.5` + Chroma + OpenAI | `POST /api/v1/chat` |
+| 4 | Summarisation | LLM via API (Llama 3.1 8B on Groq's free tier, or OpenAI), on redacted text | `POST /api/v1/summarise` |
+| 5 | Grounded reply drafting and Q&A (RAG) | `BAAI/bge-small-en-v1.5` + Chroma + LLM | `POST /api/v1/chat` |
 | — | Whole pipeline in one call | all of the above | `POST /api/v1/triage` |
 
 Personal data is masked **before** any text reaches the external LLM. Low-confidence routing (below 50%) is flagged for a human. The chatbot answers only from retrieved passages, cites them as [1], [2], and returns a "not covered" reply when nothing relevant is found.
@@ -30,7 +30,7 @@ ui/             Streamlit front-end and sample tickets
 data/           prepare.py: download, clean, split, EDA charts
 notebooks/      colab_finetune.ipynb: runs all of Part II on a free Colab GPU
 scripts/        benchmark_triage.py (latency table), docker entrypoint, notebook generator
-tests/          22 offline tests (API, redaction, RAG)
+tests/          23 offline tests (API, redaction, RAG, LLM config)
 reports/        generated metrics (JSON/Markdown) and figures for the report
 ```
 
@@ -39,8 +39,8 @@ reports/        generated metrics (JSON/Markdown) and figures for the report
 ```bash
 python -m venv .venv && source .venv/bin/activate      # Windows: .venv\Scripts\activate
 pip install -r requirements-dev.txt
-cp .env.example .env                                    # add OPENAI_API_KEY, set the model IDs
-python -m pytest                                        # 22 tests, about 2 seconds, no internet needed
+cp .env.example .env                                    # add GROQ_API_KEY (free), set the model IDs
+python -m pytest                                        # 23 tests, about 2 seconds, no internet needed
 ```
 
 ### 1. Fine-tune the models (Part II): Google Colab, about 1 hour
@@ -84,6 +84,17 @@ The first request to each model downloads it from Hugging Face, which takes a fe
 ```bash
 docker compose up --build                # API on :8000, UI on :8501; the index is built on first start
 ```
+
+## LLM provider
+
+The LLM is reached through the OpenAI-compatible chat API, so the provider is one setting:
+
+| `LLM_PROVIDER` | Key | Default model | Notes |
+|---|---|---|---|
+| `groq` (default) | `GROQ_API_KEY`, free at console.groq.com/keys | `llama-3.1-8b-instant` | No card needed; the free tier allows about 6,000 tokens a minute, and the client waits and retries automatically |
+| `openai` | `OPENAI_API_KEY` | `gpt-4o-mini` | Paid; faster for bulk evaluation |
+
+Set `LLM_MODEL` to use another model from the same provider.
 
 ## Evaluation
 

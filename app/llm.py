@@ -1,4 +1,4 @@
-"""Thin wrapper around the OpenAI chat API, so every LLM call goes through one place."""
+"""Thin wrapper around an OpenAI-compatible chat API (Groq or OpenAI), so every LLM call goes through one place."""
 from __future__ import annotations
 
 import json
@@ -8,24 +8,42 @@ from app.config import Settings
 from app.errors import ServiceError, UpstreamError
 
 
+PROVIDERS = {
+    # provider: (base_url, default model, settings field holding the key, env var name)
+    "groq": ("https://api.groq.com/openai/v1", "llama-3.1-8b-instant", "groq_api_key", "GROQ_API_KEY"),
+    "openai": (None, "gpt-4o-mini", "openai_api_key", "OPENAI_API_KEY"),
+}
+
+
 class LLMClient:
+    """Both providers speak the OpenAI chat-completions protocol, so one client covers them."""
+
     def __init__(self, settings: Settings):
+        provider = (settings.llm_provider or "groq").lower()
+        if provider not in PROVIDERS:
+            raise ValueError(f"LLM_PROVIDER must be one of {list(PROVIDERS)}")
+        base_url, default_model, key_field, self.key_env = PROVIDERS[provider]
         self.settings = settings
-        self.model = settings.llm_model
+        self.provider = provider
+        self.base_url = settings.llm_base_url or base_url
+        self.model = settings.llm_model or default_model
+        self.api_key = getattr(settings, key_field)
         self._client = None
 
     @property
     def configured(self) -> bool:
-        return bool(self.settings.openai_api_key)
+        return bool(self.api_key)
 
     def _get_client(self):
         if self._client is None:
-            if not self.settings.openai_api_key:
-                raise ServiceError(503, "MODEL_NOT_READY", "OPENAI_API_KEY is not set")
+            if not self.api_key:
+                raise ServiceError(503, "MODEL_NOT_READY", f"{self.key_env} is not set")
             from openai import OpenAI
 
-            self._client = OpenAI(api_key=self.settings.openai_api_key,
-                                  timeout=self.settings.llm_timeout_s, max_retries=2)
+            # Free tiers have per-minute token limits: retry 429s with the server's back-off.
+            self._client = OpenAI(api_key=self.api_key, base_url=self.base_url,
+                                  timeout=self.settings.llm_timeout_s,
+                                  max_retries=8 if self.provider == "groq" else 3)
         return self._client
 
     def complete(self, system: str, user: str, max_tokens: int = 400, json_mode: bool = False) -> str:

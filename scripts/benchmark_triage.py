@@ -56,7 +56,7 @@ def main() -> None:
         vals = [r[s] for r in measured if s in r]
         if vals:
             md.append(f"| {s.replace('_ms', '')} | {int(statistics.median(vals))} | {pct(vals, 0.95)} |")
-    md.append(f"\n{len(measured)} requests measured after warm-up; CPU inference, LLM calls over the OpenAI API.")
+    md.append(f"\n{len(measured)} requests measured after warm-up; CPU inference, LLM calls over the provider API (Groq or OpenAI).")
     (out / "latency.md").write_text("\n".join(md))
     print("\n".join(md))
 

@@ -39,6 +39,7 @@ class HashEmbedder:
 
 class FakeLLM:
     model = "fake-llm"
+    provider = "fake"
     configured = True
 
     def __init__(self):
@@ -88,7 +89,7 @@ def rag(tmp_path, fake_llm):
 
 @pytest.fixture
 def services(rag, fake_llm):
-    settings = Settings(_env_file=None, openai_api_key="test", api_key=None)
+    settings = Settings(_env_file=None, groq_api_key="test", api_key=None)
     return Services(settings, llm=fake_llm, redactor=Redactor(None), classifier=FakeClassifier(),
                     priority=PriorityService(None, FakeSentiment(), fake_llm, "llm", "fake-sentiment"),
                     summariser=Summariser(fake_llm), rag=rag)
