@@ -1,0 +1,34 @@
+{
+  "source": "Tobi-Bueck/customer-support-tickets",
+  "raw_rows": 61765,
+  "english_rows": 28261,
+  "non_empty_body": 28260,
+  "after_dedup": 23747,
+  "dropped_small_queues": [],
+  "final_rows": 23747,
+  "split_sizes": {
+    "train": 18997,
+    "val": 2375,
+    "test": 2375,
+    "test_sample300": 300
+  },
+  "kb_tickets": 2000,
+  "queues": {
+    "Technical Support": 6858,
+    "Product Support": 4429,
+    "Customer Service": 3570,
+    "IT Support": 2833,
+    "Billing and Payments": 2420,
+    "Returns and Exchanges": 1173,
+    "Service Outages and Maintenance": 937,
+    "Sales and Pre-Sales": 724,
+    "Human Resources": 461,
+    "General Inquiry": 342
+  },
+  "priorities": {
+    "medium": 9753,
+    "high": 9149,
+    "low": 4845
+  },
+  "median_words": 60
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "model": "TF-IDF (1-2 grams) + logistic regression",
+    "test_accuracy": 0.6674,
+    "test_macro_f1": 0.6589,
+    "sample300_accuracy": 0.68,
+    "sample300_macro_f1": 0.6703
+  },
+  {
+    "model": "fine-tuned microsoft/deberta-v3-base",
+    "test_accuracy": 0.6067,
+    "test_macro_f1": 0.6111,
+    "sample300_accuracy": 0.63,
+    "sample300_macro_f1": 0.6362
+  }
+]

@@ -1,0 +1,23 @@
+[
+  {
+    "model": "TF-IDF (1-2 grams) + logistic regression",
+    "test_accuracy": 0.6021,
+    "test_macro_f1": 0.6017,
+    "sample300_accuracy": 0.5567,
+    "sample300_macro_f1": 0.566
+  },
+  {
+    "model": "zero-shot LLM (openai/gpt-oss-20b)",
+    "test_accuracy": null,
+    "test_macro_f1": null,
+    "sample300_accuracy": 0.3267,
+    "sample300_macro_f1": 0.2525
+  },
+  {
+    "model": "fine-tuned microsoft/deberta-v3-base",
+    "test_accuracy": 0.4345,
+    "test_macro_f1": 0.4939,
+    "sample300_accuracy": 0.4167,
+    "sample300_macro_f1": 0.491
+  }
+]

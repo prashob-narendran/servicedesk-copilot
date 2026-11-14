@@ -1,0 +1,203 @@
+{
+  "model": "fine-tuned microsoft/deberta-v3-base",
+  "label": "queue",
+  "output_dir": "models/queue-classifier",
+  "mlflow_run_id": "6a960e208d12496b85f6aa7f79f3cab9",
+  "train_minutes": 30.9,
+  "best_checkpoint": "checkpoints/queue/checkpoint-4752",
+  "epochs_run": 8.0,
+  "test": {
+    "n": 2375,
+    "accuracy": 0.4345,
+    "macro_f1": 0.4939,
+    "weighted_f1": 0.4256,
+    "per_class": {
+      "Billing and Payments": {
+        "precision": 0.6245954692556634,
+        "recall": 0.7975206611570248,
+        "f1-score": 0.7005444646098004,
+        "support": 242.0
+      },
+      "Customer Service": {
+        "precision": 0.38198757763975155,
+        "recall": 0.3445378151260504,
+        "f1-score": 0.36229749631811486,
+        "support": 357.0
+      },
+      "General Inquiry": {
+        "precision": 0.46875,
+        "recall": 0.4411764705882353,
+        "f1-score": 0.45454545454545453,
+        "support": 34.0
+      },
+      "Human Resources": {
+        "precision": 0.5254237288135594,
+        "recall": 0.6739130434782609,
+        "f1-score": 0.5904761904761905,
+        "support": 46.0
+      },
+      "IT Support": {
+        "precision": 0.2901353965183752,
+        "recall": 0.528169014084507,
+        "f1-score": 0.37453183520599254,
+        "support": 284.0
+      },
+      "Product Support": {
+        "precision": 0.4096045197740113,
+        "recall": 0.327313769751693,
+        "f1-score": 0.36386449184441655,
+        "support": 443.0
+      },
+      "Returns and Exchanges": {
+        "precision": 0.39766081871345027,
+        "recall": 0.5811965811965812,
+        "f1-score": 0.4722222222222222,
+        "support": 117.0
+      },
+      "Sales and Pre-Sales": {
+        "precision": 0.5555555555555556,
+        "recall": 0.684931506849315,
+        "f1-score": 0.6134969325153374,
+        "support": 73.0
+      },
+      "Service Outages and Maintenance": {
+        "precision": 0.6458333333333334,
+        "recall": 0.6666666666666666,
+        "f1-score": 0.656084656084656,
+        "support": 93.0
+      },
+      "Technical Support": {
+        "precision": 0.4588235294117647,
+        "recall": 0.28425655976676384,
+        "f1-score": 0.35103510351035105,
+        "support": 686.0
+      },
+      "accuracy": 0.4345263157894737,
+      "macro avg": {
+        "precision": 0.47583699290154646,
+        "recall": 0.5329682088665099,
+        "f1-score": 0.49390988473325353,
+        "support": 2375.0
+      },
+      "weighted avg": {
+        "precision": 0.44352809587170144,
+        "recall": 0.4345263157894737,
+        "f1-score": 0.4256457507455835,
+        "support": 2375.0
+      }
+    }
+  },
+  "test_sample300": {
+    "n": 300,
+    "accuracy": 0.4167,
+    "macro_f1": 0.491,
+    "weighted_f1": 0.4069,
+    "per_class": {
+      "Billing and Payments": {
+        "precision": 0.5581395348837209,
+        "recall": 0.8,
+        "f1-score": 0.6575342465753424,
+        "support": 30.0
+      },
+      "Customer Service": {
+        "precision": 0.4375,
+        "recall": 0.3111111111111111,
+        "f1-score": 0.36363636363636365,
+        "support": 45.0
+      },
+      "General Inquiry": {
+        "precision": 0.75,
+        "recall": 0.75,
+        "f1-score": 0.75,
+        "support": 4.0
+      },
+      "Human Resources": {
+        "precision": 0.5,
+        "recall": 0.3333333333333333,
+        "f1-score": 0.4,
+        "support": 6.0
+      },
+      "IT Support": {
+        "precision": 0.25757575757575757,
+        "recall": 0.4722222222222222,
+        "f1-score": 0.3333333333333333,
+        "support": 36.0
+      },
+      "Product Support": {
+        "precision": 0.36363636363636365,
+        "recall": 0.2857142857142857,
+        "f1-score": 0.32,
+        "support": 56.0
+      },
+      "Returns and Exchanges": {
+        "precision": 0.3888888888888889,
+        "recall": 0.4666666666666667,
+        "f1-score": 0.42424242424242425,
+        "support": 15.0
+      },
+      "Sales and Pre-Sales": {
+        "precision": 0.5833333333333334,
+        "recall": 0.7777777777777778,
+        "f1-score": 0.6666666666666666,
+        "support": 9.0
+      },
+      "Service Outages and Maintenance": {
+        "precision": 0.5625,
+        "recall": 0.75,
+        "f1-score": 0.6428571428571429,
+        "support": 12.0
+      },
+      "Technical Support": {
+        "precision": 0.4262295081967213,
+        "recall": 0.2988505747126437,
+        "f1-score": 0.35135135135135137,
+        "support": 87.0
+      },
+      "accuracy": 0.4166666666666667,
+      "macro avg": {
+        "precision": 0.48278033865147857,
+        "recall": 0.5245675971538041,
+        "f1-score": 0.49096215286626255,
+        "support": 300.0
+      },
+      "weighted avg": {
+        "precision": 0.4232778340977445,
+        "recall": 0.4166666666666667,
+        "f1-score": 0.4068505113546209,
+        "support": 300.0
+      }
+    }
+  },
+  "top_confusions": [
+    {
+      "true": "Technical Support",
+      "predicted": "IT Support",
+      "count": 252,
+      "examples": [
+        "Dear Customer Support, several users have reported crashes in the project management SaaS. The issue might be related to recent updates to the backend systems. Steps taken to isolate the problem, such as rolling back updates and restarting ",
+        "Problems with Touch Screen We have been encountering display issues with the touchscreen monitors, which are impacting the performance of our analytics software. This problem might be related to recent software updates. After restarting the",
+        "Dear Customer Support, we are facing connectivity issues with our digital tools at the agency, which may be due to recent software updates conflicting with hardware settings. Despite rebooting the router and devices, the issue still persist"
+      ]
+    },
+    {
+      "true": "Technical Support",
+      "predicted": "Product Support",
+      "count": 91,
+      "examples": [
+        "Problem with Financial Data Synchronization in Analytics Tools The firm's data analytics tools have been experiencing issues with synchronizing investment data. Efforts to resolve the problem, such as restarting the systems and checking fir",
+        "Cybersecurity Incident Support I am writing to draw attention to an urgent security concern involving the healthcare provider's system. Recently, there have been unauthorized access attempts that have compromised medical data and threatened",
+        "SaaS Application Experienced Unexpected Failure Greetings Customer Support Team, <br>I hope this message finds you well. I am contacting you to report a recent issue with the SaaS application. It unexpectedly crashed, and I am uncertain abo"
+      ]
+    },
+    {
+      "true": "Product Support",
+      "predicted": "Technical Support",
+      "count": 89,
+      "examples": [
+        "Assistance Needed with Product Integration Difficulties Currently facing multiple simultaneous failures in product integrations, which are disrupting workflows and causing data synchronization errors. The problem might be related to recent ",
+        "Concerning Incident Involving Data Compromise Underwent a data breach impacting medical records.",
+        "Support for Integration Difficulties I am contacting you to bring to your attention integration problems I am encountering with various tools, which are leading to project delays. These tools are malfunctioning, synchronization is failing, "
+      ]
+    }
+  ]
+}

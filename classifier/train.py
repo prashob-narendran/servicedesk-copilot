@@ -5,7 +5,8 @@
     python -m classifier.train --label queue --push-to-hub <user>/servicedesk-queue-classifier
 
 Recipe: microsoft/deberta-v3-base + classification head, weighted cross-entropy for class imbalance,
-linear warm-up (10%), early stopping on validation macro-F1, best checkpoint kept. Every run is logged
+learning rate 5e-5 with linear warm-up (10%), 8 epochs, batch 32, 128 tokens, early stopping on validation
+macro-F1, best checkpoint kept. (A first run with lr 2e-5 / 4 epochs / 256 tokens under-fitted.) Every run is logged
 to MLflow (parameters, per-epoch metrics, final test metrics, plots).
 """
 from __future__ import annotations
@@ -105,10 +106,10 @@ def main() -> None:
     ap.add_argument("--label", default="queue", choices=["queue", "priority"])
     ap.add_argument("--model", default="microsoft/deberta-v3-base")
     ap.add_argument("--output", default=None)
-    ap.add_argument("--epochs", type=int, default=4)
-    ap.add_argument("--lr", type=float, default=2e-5)
-    ap.add_argument("--batch-size", type=int, default=16)
-    ap.add_argument("--max-length", type=int, default=256)
+    ap.add_argument("--epochs", type=int, default=8)
+    ap.add_argument("--lr", type=float, default=5e-5)
+    ap.add_argument("--batch-size", type=int, default=32)
+    ap.add_argument("--max-length", type=int, default=128)
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--no-fp16", dest="fp16", action="store_false")
     ap.add_argument("--no-class-weights", dest="class_weights", action="store_false")

@@ -1,0 +1,119 @@
+{
+  "model": "fine-tuned microsoft/deberta-v3-base",
+  "label": "priority",
+  "output_dir": "models/priority-classifier",
+  "mlflow_run_id": "6cc1630832924a1ba7184bd27a95923d",
+  "train_minutes": 30.6,
+  "best_checkpoint": "checkpoints/priority/checkpoint-4752",
+  "epochs_run": 8.0,
+  "test": {
+    "n": 2375,
+    "accuracy": 0.6067,
+    "macro_f1": 0.6111,
+    "weighted_f1": 0.606,
+    "per_class": {
+      "high": {
+        "precision": 0.6191950464396285,
+        "recall": 0.6564551422319475,
+        "f1-score": 0.6372809346787042,
+        "support": 914.0
+      },
+      "low": {
+        "precision": 0.6403326403326404,
+        "recall": 0.6260162601626016,
+        "f1-score": 0.6330935251798561,
+        "support": 492.0
+      },
+      "medium": {
+        "precision": 0.5762162162162162,
+        "recall": 0.5500515995872033,
+        "f1-score": 0.5628299894403379,
+        "support": 969.0
+      },
+      "accuracy": 0.6067368421052631,
+      "macro avg": {
+        "precision": 0.6119146343294951,
+        "recall": 0.6108410006605841,
+        "f1-score": 0.6110681497662994,
+        "support": 2375.0
+      },
+      "weighted avg": {
+        "precision": 0.606038503159155,
+        "recall": 0.6067368421052631,
+        "f1-score": 0.6060374940852683,
+        "support": 2375.0
+      }
+    }
+  },
+  "test_sample300": {
+    "n": 300,
+    "accuracy": 0.63,
+    "macro_f1": 0.6362,
+    "weighted_f1": 0.6279,
+    "per_class": {
+      "high": {
+        "precision": 0.6299212598425197,
+        "recall": 0.7142857142857143,
+        "f1-score": 0.6694560669456067,
+        "support": 112.0
+      },
+      "low": {
+        "precision": 0.6779661016949152,
+        "recall": 0.6557377049180327,
+        "f1-score": 0.6666666666666666,
+        "support": 61.0
+      },
+      "medium": {
+        "precision": 0.6052631578947368,
+        "recall": 0.5433070866141733,
+        "f1-score": 0.5726141078838174,
+        "support": 127.0
+      },
+      "accuracy": 0.63,
+      "macro avg": {
+        "precision": 0.6377168398107239,
+        "recall": 0.6377768352726401,
+        "f1-score": 0.6362456138320302,
+        "support": 300.0
+      },
+      "weighted avg": {
+        "precision": 0.629251781194612,
+        "recall": 0.63,
+        "f1-score": 0.6278924595527313,
+        "support": 300.0
+      }
+    }
+  },
+  "top_confusions": [
+    {
+      "true": "medium",
+      "predicted": "high",
+      "count": 310,
+      "examples": [
+        "Issue with Marketing Campaign Hello Customer Support, we are encountering issues with our marketing campaign, which is hindering our brand's growth and digital strategies. The problem might be due to compatibility issues with software or ha",
+        "System Specifications for Running Laravel 8 on MacBook Air Greetings Customer Support, I am writing to request the system specifications needed for running Laravel 8 on my MacBook Air. My intention is to develop web applications using Larav",
+        "Enhance Data Analytics Software for Investment Seeking assistance in optimizing data analytics software to enhance investment strategies across our product line. This will aid in making more informed decisions and improving efficiency. We w"
+      ]
+    },
+    {
+      "true": "high",
+      "predicted": "medium",
+      "count": 267,
+      "examples": [
+        "Data Security Please address the need to enhance security protocols for managing medical data across all affected software. It is crucial to ensure compliance with regulatory requirements and maintain patient confidentiality. We request imm",
+        "Device Malfunction Problems The company has encountered several device malfunctions impacting scanners, antivirus programs, peripherals, and data analytics operations. Potential conflicts between hardware and software have been observed. De",
+        "Request for Enhanced Encryption for Medical Data Dear Customer Support, I am reaching out to inquire about the encryption methods and plans for future enhancements that you use for storing and transmitting medical data to ensure compliance "
+      ]
+    },
+    {
+      "true": "medium",
+      "predicted": "low",
+      "count": 126,
+      "examples": [
+        "Request to update data analytics tools to enhance investment optimization.",
+        "Seeking information on methods to secure medical data in hospital systems. Interested in learning about the strategies your company employs to protect sensitive information.",
+        "Security Incident in Medical Systems A security breach was identified due to outdated antivirus software. An updated Norton Antivirus has been installed and the system has been scanned."
+      ]
+    }
+  ]
+}
