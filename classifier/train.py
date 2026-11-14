@@ -136,6 +136,7 @@ def main() -> None:
     tokenizer = AutoTokenizer.from_pretrained(args.model)
     model = AutoModelForSequenceClassification.from_pretrained(
         args.model, num_labels=len(labels), id2label=id2label, label2id=label2id, ignore_mismatched_sizes=True)
+    model = model.float()  # some checkpoints load in fp16; mixed-precision training needs fp32 master weights
 
     def to_ds(df: pd.DataFrame) -> Dataset:
         ds = Dataset.from_dict({"text": df["text"].tolist(), "labels": [label2id[x] for x in df[args.label]]})

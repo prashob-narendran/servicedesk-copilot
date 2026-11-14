@@ -10,7 +10,8 @@ from app.errors import ServiceError, UpstreamError
 
 PROVIDERS = {
     # provider: (base_url, default model, settings field holding the key, env var name)
-    "groq": ("https://api.groq.com/openai/v1", "llama-3.1-8b-instant", "groq_api_key", "GROQ_API_KEY"),
+    # Groq retired its Llama models for free keys on 16 Aug 2026; openai/gpt-oss-20b is the named replacement
+    "groq": ("https://api.groq.com/openai/v1", "openai/gpt-oss-20b", "groq_api_key", "GROQ_API_KEY"),
     "openai": (None, "gpt-4o-mini", "openai_api_key", "OPENAI_API_KEY"),
 }
 
@@ -18,7 +19,7 @@ PROVIDERS = {
 class LLMClient:
     """Both providers speak the OpenAI chat-completions protocol, so one client covers them."""
 
-    def __init__(self, settings: Settings):
+    def __init__(self, settings: Settings, model: str | None = None):
         provider = (settings.llm_provider or "groq").lower()
         if provider not in PROVIDERS:
             raise ValueError(f"LLM_PROVIDER must be one of {list(PROVIDERS)}")
@@ -26,9 +27,15 @@ class LLMClient:
         self.settings = settings
         self.provider = provider
         self.base_url = settings.llm_base_url or base_url
-        self.model = settings.llm_model or default_model
+        self.model = model or settings.llm_model or default_model
         self.api_key = getattr(settings, key_field)
         self._client = None
+
+    @property
+    def reasoning(self) -> bool:
+        """gpt-oss and OpenAI o-series/gpt-5 models think before answering; those tokens count toward the limit."""
+        name = self.model.split("/")[-1]
+        return name.startswith(("gpt-oss", "o1", "o3", "o4", "gpt-5"))
 
     @property
     def configured(self) -> bool:
@@ -54,10 +61,13 @@ class LLMClient:
             "messages": [{"role": "system", "content": system}, {"role": "user", "content": user}],
             "max_completion_tokens": max_tokens,
         }
-        if self.settings.llm_temperature is not None:
+        if self.reasoning:
+            kwargs["reasoning_effort"] = "low"
+            kwargs["max_completion_tokens"] = max_tokens + 1024  # room for the hidden reasoning
+        elif self.settings.llm_temperature is not None:
             kwargs["temperature"] = self.settings.llm_temperature
-        if json_mode:
-            kwargs["response_format"] = {"type": "json_object"}
+        if json_mode and self.provider == "openai" and not self.reasoning:
+            kwargs["response_format"] = {"type": "json_object"}  # elsewhere the prompt asks for JSON
         try:
             resp = self._get_client().chat.completions.create(**kwargs)
         except openai.RateLimitError as e:

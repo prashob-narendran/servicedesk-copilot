@@ -1,6 +1,6 @@
 """Evaluate the RAG chatbot on rag/eval/questions.jsonl.
 
-    python -m rag.eval.run_eval                 # full evaluation (needs the LLM key; about 30–45 min on the free Groq tier)
+    python -m rag.eval.run_eval                 # full evaluation (needs the LLM key; about 15–30 min on the free Groq tier)
     python -m rag.eval.run_eval --retrieval-only  # free: retrieval hit rate + threshold calibration only
 
 Metrics (definitions follow the RAGAS framework, implemented directly with an LLM judge so the
@@ -33,8 +33,8 @@ _FAITH = ("You check answers for hallucination. Split the ANSWER into atomic fac
           '{"claims": <number of claims>, "supported": <number supported>}')
 _REL = ("Write 3 different questions that the following answer would be a good answer to. "
         'Reply as JSON: {"questions": ["...", "...", "..."]}')
-_PREC = ("Decide whether the CONTEXT chunk is useful for producing the REFERENCE answer to the QUESTION. "
-         'Reply as JSON: {"relevant": true} or {"relevant": false}')
+_PREC = ("For each numbered CONTEXT chunk, decide whether it is useful for producing the REFERENCE answer to the "
+         'QUESTION. Reply as JSON with one boolean per chunk, in order: {"relevant": [true, false, ...]}')
 
 
 def cosine(a: list[float], b: list[float]) -> float:
@@ -60,6 +60,8 @@ def main() -> None:
     args = ap.parse_args()
 
     llm = LLMClient(s)
+    judge_model = s.llm_judge_model or ("openai/gpt-oss-120b" if llm.provider == "groq" else None)
+    judge = LLMClient(s, model=judge_model)  # a different model has its own free-tier quota
     rag = RAGPipeline(index_dir=s.rag_index_dir, score_threshold=s.rag_score_threshold, llm=llm,
                       collection_name=s.rag_collection, embedding_model_id=s.embedding_model_id, device=s.device)
     if rag.count() == 0:
@@ -82,16 +84,17 @@ def main() -> None:
             if in_scope and res["grounded"]:
                 ctx_hits = [h for h in hits if h["score"] >= rag.score_threshold]
                 context = "\n\n".join(h["text"] for h in ctx_hits)
-                f = llm.complete_json(_FAITH, f"CONTEXT:\n{context}\n\nANSWER:\n{res['answer']}")
+                f = judge.complete_json(_FAITH, f"CONTEXT:\n{context}\n\nANSWER:\n{res['answer']}")
                 claims = max(int(f.get("claims", 0) or 0), 1)
                 row["faithfulness"] = round(min(int(f.get("supported", 0) or 0), claims) / claims, 3)
-                gen = llm.complete_json(_REL, res["answer"]).get("questions", [])[:3]
+                gen = judge.complete_json(_REL, res["answer"]).get("questions", [])[:3]
                 if gen:
                     vecs = rag.embedder.encode([q] + gen, is_query=True)
                     row["answer_relevancy"] = round(statistics.mean(cosine(vecs[0], v) for v in vecs[1:]), 3)
-                rels = [bool(llm.complete_json(
-                    _PREC, f"QUESTION: {q}\nREFERENCE: {it['ground_truth']}\nCONTEXT:\n{h['text']}").get("relevant"))
-                    for h in ctx_hits]
+                chunks = "\n\n".join(f"[{i}] {h['text']}" for i, h in enumerate(ctx_hits, 1))
+                raw = judge.complete_json(_PREC, f"QUESTION: {q}\nREFERENCE: {it['ground_truth']}\nCONTEXT:\n{chunks}")
+                raw = raw.get("relevant", []) if isinstance(raw.get("relevant"), list) else []
+                rels = [bool(raw[i]) if i < len(raw) else False for i in range(len(ctx_hits))]
                 row["context_precision"] = round(average_precision(rels), 3)
         rows.append(row)
         print(f"{it['id']}: top1={row['top1_score']:.3f} hit={row['hit']} grounded={row.get('grounded')}")
@@ -107,7 +110,7 @@ def main() -> None:
     out_max = max(r["top1_score"] for r in out_rows) if out_rows else 0.0
     summary = {
         "questions": len(rows), "in_scope": len(in_rows), "out_of_scope": len(out_rows), "top_k": args.top_k,
-        "score_threshold": rag.score_threshold, "embedding_model": s.embedding_model_id, "llm": f"{llm.provider}:{llm.model}",
+        "score_threshold": rag.score_threshold, "embedding_model": s.embedding_model_id, "llm": f"{llm.provider}:{llm.model}", "judge": judge.model,
         f"hit_rate@{args.top_k}": round(sum(bool(r["hit"]) for r in in_rows) / len(in_rows), 3),
         "top1_score_in_scope_min": in_min, "top1_score_out_of_scope_max": out_max,
         "suggested_threshold": round((in_min + out_max) / 2, 3) if in_min > out_max else None,

@@ -18,8 +18,9 @@ class Settings(BaseSettings):
     llm_provider: str = "groq"
     groq_api_key: str | None = None
     openai_api_key: str | None = None
-    llm_model: str | None = None          # default: llama-3.1-8b-instant (groq) / gpt-4o-mini (openai)
+    llm_model: str | None = None          # default: openai/gpt-oss-20b (groq) / gpt-4o-mini (openai)
     llm_base_url: str | None = None       # optional: any other OpenAI-compatible endpoint
+    llm_judge_model: str | None = None    # evaluation judge; default openai/gpt-oss-120b (groq) / same model (openai)
     llm_temperature: float | None = 0.2   # set empty for models that do not accept temperature
     llm_timeout_s: float = 30.0
 

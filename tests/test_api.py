@@ -120,9 +120,9 @@ def test_llm_provider_configuration():
     from app.llm import LLMClient
 
     groq = LLMClient(Settings(_env_file=None, llm_provider="groq", groq_api_key="gsk_x"))
-    assert groq.base_url == "https://api.groq.com/openai/v1" and groq.model == "llama-3.1-8b-instant"
-    assert groq.configured
+    assert groq.base_url == "https://api.groq.com/openai/v1" and groq.model == "openai/gpt-oss-20b"
+    assert groq.configured and groq.reasoning
     oa = LLMClient(Settings(_env_file=None, llm_provider="openai", openai_api_key=None))
-    assert oa.base_url is None and oa.model == "gpt-4o-mini" and not oa.configured
-    custom = LLMClient(Settings(_env_file=None, llm_provider="groq", groq_api_key="k", llm_model="llama-3.3-70b-versatile"))
-    assert custom.model == "llama-3.3-70b-versatile"
+    assert oa.base_url is None and oa.model == "gpt-4o-mini" and not oa.configured and not oa.reasoning
+    custom = LLMClient(Settings(_env_file=None, llm_provider="groq", groq_api_key="k", llm_model="openai/gpt-oss-120b"))
+    assert custom.model == "openai/gpt-oss-120b"

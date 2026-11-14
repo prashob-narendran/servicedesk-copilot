@@ -14,7 +14,7 @@ Prashob N (2025AE05006) · Radhakrishnan R (2025AF05003) · Swami Vivek Bakal (2
 | 1 | PII redaction + named-entity recognition | Regex recognisers + GLiNER (`urchade/gliner_multi_pii-v1`) | `POST /api/v1/redact` |
 | 2 | Queue classification (routing) | **Fine-tuned** `microsoft/deberta-v3-base` | `POST /api/v1/classify` |
 | 3 | Priority + customer sentiment | **Fine-tuned** priority classifier + `cardiffnlp/twitter-roberta-base-sentiment-latest` | `POST /api/v1/priority` |
-| 4 | Summarisation | LLM via API (Llama 3.1 8B on Groq's free tier, or OpenAI), on redacted text | `POST /api/v1/summarise` |
+| 4 | Summarisation | LLM via API (gpt-oss-20b on Groq's free tier, or OpenAI), on redacted text | `POST /api/v1/summarise` |
 | 5 | Grounded reply drafting and Q&A (RAG) | `BAAI/bge-small-en-v1.5` + Chroma + LLM | `POST /api/v1/chat` |
 | — | Whole pipeline in one call | all of the above | `POST /api/v1/triage` |
 
@@ -91,7 +91,7 @@ The LLM is reached through the OpenAI-compatible chat API, so the provider is on
 
 | `LLM_PROVIDER` | Key | Default model | Notes |
 |---|---|---|---|
-| `groq` (default) | `GROQ_API_KEY`, free at console.groq.com/keys | `llama-3.1-8b-instant` | No card needed; the free tier allows about 6,000 tokens a minute, and the client waits and retries automatically |
+| `groq` (default) | `GROQ_API_KEY`, free at console.groq.com/keys | `openai/gpt-oss-20b` | No card needed; free-tier rate limits apply per model; the client waits and retries automatically, and the evaluation judge uses openai/gpt-oss-120b so it draws on a separate quota |
 | `openai` | `OPENAI_API_KEY` | `gpt-4o-mini` | Paid; faster for bulk evaluation |
 
 Set `LLM_MODEL` to use another model from the same provider.

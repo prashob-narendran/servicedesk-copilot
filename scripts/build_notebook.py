@@ -45,8 +45,8 @@ cells = [
     code("!python -m classifier.train --label queue --push-to-hub {HF_USER}/servicedesk-queue-classifier"),
     md("## 6. Fine-tune the priority classifier"),
     code("!python -m classifier.train --label priority --push-to-hub {HF_USER}/servicedesk-priority-classifier"),
-    md("## 6b. Zero-shot LLM baseline (about 15–25 minutes)\nScores the free Groq Llama 3.1 8B model on the "
-       "fixed 300-ticket sample. It is slow only because the free tier allows 6,000 tokens per minute; the client "
+    md("## 6b. Zero-shot LLM baseline (about 15–25 minutes)\nOptional. Scores the free Groq gpt-oss-20b model on the "
+       "fixed 300-ticket sample. It is slow because of free-tier rate limits; the client "
        "waits and retries automatically. The TF-IDF run is repeated in seconds so both baselines land in one file set."),
     code("!python -m classifier.baselines --label queue --zero-shot"),
     md("## 7. Results for the report"),
