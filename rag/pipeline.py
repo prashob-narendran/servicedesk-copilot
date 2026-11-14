@@ -100,8 +100,8 @@ def load_documents(paths: list[str]) -> list[dict]:
         elif suffix == ".csv":
             with f.open(encoding="utf-8") as fh:
                 for i, row in enumerate(csv.DictReader(fh)):
-                    answer = (row.get("answer") or "").strip()
-                    body = (row.get("body") or "").strip()
+                    answer = (row.get("answer") or "").replace("\\n", "\n").strip()
+                    body = (row.get("body") or "").replace("\\n", "\n").strip()
                     if not answer or not body:
                         continue
                     subject = (row.get("subject") or "").strip() or "Support ticket"
@@ -257,5 +257,14 @@ class RAGPipeline:
 
 
 def _snippet(text: str, n: int = 300) -> str:
-    text = " ".join(text.split())
+    """Plain-text preview for the UI: no markdown headings, tables, bold markers or escaped newlines."""
+    text = text.replace("\\n", "\n")
+    lines = []
+    for line in text.splitlines():
+        line = re.sub(r"^\s*#+\s*", "", line)               # headings
+        if re.fullmatch(r"[\s|:\-]*", line):                 # table rules such as |---|---|
+            continue
+        line = line.replace("**", "").replace("`", "").strip(" |").replace(" | ", " · ")
+        lines.append(line)
+    text = " ".join(" ".join(lines).split())
     return text if len(text) <= n else text[: n - 1].rsplit(" ", 1)[0] + "…"
