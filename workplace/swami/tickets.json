@@ -1,0 +1,46 @@
+{
+  "member": "Swami Vivek Bakal (2025AF05121)",
+  "organisation": "Consulting services company for the automotive sector, with a cloud learning platform; 300-400 employees (anonymised)",
+  "tickets": [
+    {
+      "id": "SW-1",
+      "subject": "Learner cannot open enrolled course",
+      "body": "Hello, I enrolled in the course 'EV Battery Safety - Level 2' yesterday but when I open it the platform shows 'You are not authorised to view this content'. My manager approved the enrolment. Please help, my assessment is on Friday. Regards, Arjun Nair, arjun.nair@dealer-example.com",
+      "expected_team": "Access and accounts",
+      "expected_priority": "medium"
+    },
+    {
+      "id": "SW-2",
+      "subject": "Learning platform down at dealer training centre",
+      "body": "URGENT: the learning platform returns error 503 for everyone at our dealer training centre since 09:10. 120 service technicians are in a scheduled certification session and cannot continue. Please fix immediately.",
+      "expected_team": "Platform operations (incident)",
+      "expected_priority": "high"
+    },
+    {
+      "id": "SW-3",
+      "subject": "Course progress not saved",
+      "body": "When learners close the course player and come back, the progress bar is back at zero and they have to restart the module from the beginning. This happens in several modules. Is there a way to resume where they left off?",
+      "expected_team": "Product and usability",
+      "expected_priority": "medium"
+    },
+    {
+      "id": "SW-4",
+      "subject": "Video lessons stuck loading in Chrome",
+      "body": "Video lessons in the brake systems course stay stuck at 0% loading in Google Chrome. The same videos play fine in Microsoft Edge. Cleared the cache already. Please advise.",
+      "expected_team": "Technical support",
+      "expected_priority": "medium"
+    },
+    {
+      "id": "SW-5",
+      "subject": "SSO users cannot log in after migration",
+      "body": "After our company moved to the new single sign-on provider last night, none of our users can log in to the learning platform; they get a 403 error after the SSO page. About 300 users affected. Contact: Ravi Kumar, IT admin, +91 98450 22113.",
+      "expected_team": "Access and SSO integration",
+      "expected_priority": "high"
+    }
+  ],
+  "questions": [
+    "A learner sees 'not authorised' on a course they enrolled in. What should I check?",
+    "What do we do when the learning platform is down for a client?",
+    "How quickly must we respond to a P1 case for an enterprise client?"
+  ]
+}

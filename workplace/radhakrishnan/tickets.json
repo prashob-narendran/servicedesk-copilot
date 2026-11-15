@@ -1,0 +1,46 @@
+{
+  "member": "Radhakrishnan R (2025AF05003)",
+  "organisation": "Private bank, 400-500 employees (anonymised)",
+  "tickets": [
+    {
+      "id": "RB-1",
+      "subject": "ATM did not dispense cash but account debited",
+      "body": "Call note: customer Maria Gonzalez called at 10:05. She tried to withdraw $400 at the ATM on Main Street yesterday evening. The ATM showed an error and no cash came out, but $400 was debited from account number 004512345678. She wants the money back. Callback number +1 646 555 0142.",
+      "expected_team": "Disputes - ATM and debit (EFT)",
+      "expected_priority": "medium"
+    },
+    {
+      "id": "RB-2",
+      "subject": "Unrecognised credit card charge",
+      "body": "Call note: customer reports a charge of $1,249.99 from an online electronics store on his credit card ending 4417 that he did not make. He still has the card in his wallet. He is worried about fraud and wants the charge reversed and the card blocked. Email james.whitfield@example.com.",
+      "expected_team": "Card disputes and fraud",
+      "expected_priority": "high"
+    },
+    {
+      "id": "RB-3",
+      "subject": "Zelle payment sent to a scammer",
+      "body": "Call note: customer sent $850 through Zelle to a seller on a marketplace for a sofa. The seller has stopped responding and the item was never delivered. Customer believes it was a scam and asks the bank to reverse the payment. Very upset, has called twice already.",
+      "expected_team": "Payments disputes (Zelle / P2P)",
+      "expected_priority": "high"
+    },
+    {
+      "id": "RB-4",
+      "subject": "Mobile banking login failing for many customers",
+      "body": "Call centre lead: since 08:30 we are receiving many calls from customers who cannot log in to the mobile banking app. They see 'service unavailable'. Call queue is now 25 minutes. Please check with IT urgently and give us a message for customers.",
+      "expected_team": "IT incident - digital banking",
+      "expected_priority": "high"
+    },
+    {
+      "id": "RB-5",
+      "subject": "Duplicate card charge at restaurant",
+      "body": "Call note: customer was charged twice for the same restaurant bill of $86.40 on 9 November on her credit card ending 2290. She has the receipt and asks for the duplicate charge to be removed.",
+      "expected_team": "Card disputes and fraud",
+      "expected_priority": "low"
+    }
+  ],
+  "questions": [
+    "What is the deadline to give provisional credit for an ATM dispute?",
+    "What must the agent collect from a customer reporting an unauthorised card transaction?",
+    "Can a Zelle payment sent to a scammer be reversed?"
+  ]
+}

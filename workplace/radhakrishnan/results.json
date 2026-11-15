@@ -1,0 +1,172 @@
+{
+  "member": "Radhakrishnan R (2025AF05003)",
+  "tickets": [
+    {
+      "id": "RB-1",
+      "subject": "ATM did not dispense cash but account debited",
+      "expected_team": "Disputes - ATM and debit (EFT)",
+      "expected_priority": "medium",
+      "queue": "Billing and Payments",
+      "queue_confidence": 0.7803,
+      "needs_review": false,
+      "priority": "low",
+      "sentiment": "neutral",
+      "masked": [
+        "PERSON",
+        "ACCOUNT_NUMBER",
+        "PHONE"
+      ],
+      "summary": "ATM error debited $400 from [ACCOUNT_NUMBER_1] without dispensing cash, customer [PERSON_1] wants refund; urgent callback to [PHONE_1].",
+      "reply_grounded": true,
+      "reply_sources": [
+        "Workplace SOP – Card and Electronic Payment Disputes (illustrative)",
+        "Workplace SOP – Card and Electronic Payment Disputes (illustrative)",
+        "Workplace SOP – Card and Electronic Payment Disputes (illustrative)",
+        "Past ticket: Charging Discrepancy"
+      ],
+      "reply": "Hi [PERSON_1],\n\nThank you for contacting us. I’m sorry to hear about the ATM error that debited $400 from your account without dispensing cash. We will open an ATM dispute case for this transaction and begin the investigation immediately. According to our SOP, the investigation may take up to 45 days, and we will provide you with a written outcome once it’s completed. In the meantime, we will keep you updated on the progress via your callback number, [PHONE_1].\n\nIf you have any additional information that could assist the investigation—such as the exact time of the transaction or a photo of the ATM screen—please let us know. Thank you for your patience.\n\nBest regards,  \nTechServ Support\n\n(Note: All details are handled in accordance with our Card and Electronic Payment Disputes SOP [1].)",
+      "latency_ms": 2414
+    },
+    {
+      "id": "RB-2",
+      "subject": "Unrecognised credit card charge",
+      "expected_team": "Card disputes and fraud",
+      "expected_priority": "high",
+      "queue": "Billing and Payments",
+      "queue_confidence": 0.9975,
+      "needs_review": false,
+      "priority": "medium",
+      "sentiment": "negative",
+      "masked": [
+        "PERSON",
+        "EMAIL"
+      ],
+      "summary": "[PERSON_1] reports an unauthorized $1,249.99 charge on credit card ending 4417, requests reversal and card blocking due to fraud concerns, emails [EMAIL_1].",
+      "reply_grounded": true,
+      "reply_sources": [
+        "Past ticket: Invoice Discrepancy Concern",
+        "Past ticket: Support ticket",
+        "Past ticket: Discrepancy in Invoice Billing",
+        "Workplace SOP – Card and Electronic Payment Disputes (illustrative)"
+      ],
+      "reply": "Hi [PERSON_1],\n\nThank you for letting us know about the unauthorized $1,249.99 charge. We’re treating this as a potential fraud case. We will immediately block the credit card ending 4417 and issue a replacement. Our billing team will review your account, investigate the transaction, and arrange a refund for the overcharge. We’ll reach out with a status update shortly. If you have any further details (date, merchant name, etc.), please reply to this email or give us a quick call.\n\nThanks for your patience.",
+      "latency_ms": 2542
+    },
+    {
+      "id": "RB-3",
+      "subject": "Zelle payment sent to a scammer",
+      "expected_team": "Payments disputes (Zelle / P2P)",
+      "expected_priority": "high",
+      "queue": "Billing and Payments",
+      "queue_confidence": 0.9963,
+      "needs_review": false,
+      "priority": "medium",
+      "sentiment": "negative",
+      "masked": [
+        "PERSON",
+        "PERSON",
+        "PERSON",
+        "PERSON"
+      ],
+      "summary": "[PERSON_1] sent $850 via Zelle to a suspected scammer [PERSON_2] for a sofa, who vanished; requests urgent reversal after two upset calls.",
+      "reply_grounded": true,
+      "reply_sources": [
+        "Workplace SOP – Card and Electronic Payment Disputes (illustrative)",
+        "Workplace SOP – Card and Electronic Payment Disputes (illustrative)",
+        "TechServ Incident Management Process",
+        "Past ticket: Hospital System Security Measures"
+      ],
+      "reply": "Dear [PERSON_1],\n\nI’m sorry to hear about your experience. Because the payment was sent to a seller you authorized, we treat this as a scam case rather than an unauthorized transfer. We will:\n\n1. Open a formal scam investigation for the $850 transaction.  \n2. Contact the receiving bank (Zelle’s partner) to request a recovery of the funds.  \n3. Review the case against our scam‑reimbursement policy and keep you updated.\n\nWe will begin this process immediately and you can expect an update once we have more information.  \n\nThank you for your patience.\n\nBest regards,  \nTechServ Support",
+      "latency_ms": 7245
+    },
+    {
+      "id": "RB-4",
+      "subject": "Mobile banking login failing for many customers",
+      "expected_team": "IT incident - digital banking",
+      "expected_priority": "high",
+      "queue": "Product Support",
+      "queue_confidence": 0.3625,
+      "needs_review": true,
+      "priority": "high",
+      "sentiment": "negative",
+      "masked": [
+        "PERSON",
+        "PERSON",
+        "PERSON",
+        "PERSON"
+      ],
+      "summary": "Mobile banking login failing for many [PERSON_1]; since 08:30, [PERSON_2] reports a 25‑minute call queue and “service unavailable” errors—urgent IT investigation required.",
+      "reply_grounded": true,
+      "reply_sources": [
+        "Past ticket: Reported Login Failures During Peak Hours",
+        "Past ticket: Report of Login Problem",
+        "Past ticket: Report on Frequent Login Issues",
+        "SOP – VPN and Remote Access Troubleshooting"
+      ],
+      "reply": "Hi [PERSON_2],\n\nWe’re aware that many of your customers ([PERSON_1]) are unable to log in to the mobile banking app and see “service unavailable.” Our team is looking into this as a high‑priority issue. We’ll first verify that all MFA registrations are valid and that the authenticator app clocks are correct, re‑registering any accounts if needed (SOP‑4).\n\nWe’ll provide you an update within the next 2 hours. In the meantime, please let your customers know that we’re working on a fix and appreciate their patience.",
+      "latency_ms": 9414
+    },
+    {
+      "id": "RB-5",
+      "subject": "Duplicate card charge at restaurant",
+      "expected_team": "Card disputes and fraud",
+      "expected_priority": "low",
+      "queue": "Billing and Payments",
+      "queue_confidence": 0.9981,
+      "needs_review": false,
+      "priority": "medium",
+      "sentiment": "negative",
+      "masked": [
+        "PERSON"
+      ],
+      "summary": "Duplicate $86.40 charge on [PERSON_1]’s credit card ending 2290 for a restaurant bill on 9 November; she requests removal with receipt.",
+      "reply_grounded": true,
+      "reply_sources": [
+        "TechServ Billing, Refunds and Payments Policy",
+        "Workplace SOP – Card and Electronic Payment Disputes (illustrative)",
+        "Past ticket: Charging Discrepancy",
+        "Past ticket: Invoice Discrepancy Concern"
+      ],
+      "reply": "Dear [PERSON_1],\n\nThank you for bringing the duplicate charge of $86.40 to our attention. We’ve verified the double transaction on the card ending 2290 and will refund the full amount to the original payment method. The refund reference number will be sent to your email within 5 business days [1]. Until the refund is completed, the disputed amount will not be debited from your account [2].\n\nWe’ll keep you updated and will let you know as soon as the refund is processed.\n\nBest regards,  \nTechServ Support Team",
+      "latency_ms": 6398
+    }
+  ],
+  "questions": [
+    {
+      "question": "What is the deadline to give provisional credit for an ATM dispute?",
+      "grounded": true,
+      "answer": "Give the provisional credit if the investigation is not finished within 10 business days. [1]",
+      "sources": [
+        "Workplace SOP – Card and Electronic Payment Disputes (illustrative)",
+        "Workplace SOP – Card and Electronic Payment Disputes (illustrative)",
+        "Workplace Runbook – Digital Banking Downtime (illustrative)",
+        "Workplace SOP – Card and Electronic Payment Disputes (illustrative)"
+      ],
+      "latency_ms": 4874
+    },
+    {
+      "question": "What must the agent collect from a customer reporting an unauthorised card transaction?",
+      "grounded": true,
+      "answer": "The agent must collect the following information:\n\n1. Verify the caller's identity using the bank's call‑centre verification steps.  \n2. Record the transaction date, amount, merchant or ATM location, and the channel (ATM, debit card, credit card, Zelle).  \n3. Ask whether the customer still has the card and whether the transaction was authorised by them.  \n4. For suspected fraud, block the card immediately and order a replacement.  \n\n[2]",
+      "sources": [
+        "Workplace SOP – Card and Electronic Payment Disputes (illustrative)",
+        "Workplace SOP – Card and Electronic Payment Disputes (illustrative)",
+        "Past ticket: Urgent: Reporting Unapproved Access Attempts Required",
+        "Past ticket: Unexplained Duplicate Charges"
+      ],
+      "latency_ms": 3086
+    },
+    {
+      "question": "Can a Zelle payment sent to a scammer be reversed?",
+      "grounded": true,
+      "answer": "The policy states that if the customer authorized the Zelle payment, it is treated like a normal electronic transfer and generally cannot be reversed or refunded on the call. Only unauthorised transfers are handled as disputes. [1]",
+      "sources": [
+        "Workplace SOP – Card and Electronic Payment Disputes (illustrative)",
+        "Past ticket: Modification Inquiry",
+        "Past ticket: Charging Discrepancy",
+        "Past ticket: Hospital System Security Measures"
+      ],
+      "latency_ms": 4000
+    }
+  ]
+}

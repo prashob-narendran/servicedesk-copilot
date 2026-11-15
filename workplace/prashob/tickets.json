@@ -1,0 +1,46 @@
+{
+  "member": "Prashob N (2025AE05006)",
+  "organisation": "Government-owned port and logistics group (anonymised)",
+  "tickets": [
+    {
+      "id": "WP-1",
+      "subject": "Read access to terminal KPI schema in Snowflake",
+      "body": "Hi team, please grant read-only access to the PORT_OPS_DW.TERMINAL_KPI schema in Snowflake for our new analyst Rahul Menon (rahul.menon@portgroup-example.ae). He needs it for the weekly terminal productivity report. His manager Fatima Al Mansoori has approved. Thanks.",
+      "expected_team": "Data access (Snowflake platform)",
+      "expected_priority": "low"
+    },
+    {
+      "id": "WP-2",
+      "subject": "Country-wise throughput dashboard shows wrong TEU figures",
+      "body": "The Country-wise Container Throughput dashboard shows TEU volumes for Terminal 2 about 18% lower than the terminal operating system for October. The CEO office uses these figures in tomorrow morning's performance review. Please investigate urgently and call me on +971 55 987 6543.",
+      "expected_team": "Reporting and BI",
+      "expected_priority": "high"
+    },
+    {
+      "id": "WP-3",
+      "subject": "Nightly ETL job VESSEL_CALLS_LOAD failed",
+      "body": "The nightly ETL pipeline VESSEL_CALLS_LOAD failed at 02:15 with a Snowflake warehouse timeout. As a result the berth utilisation and vessel turnaround reports still show yesterday's data. Port operations review these reports at 09:00. Please restart and check the root cause.",
+      "expected_team": "ETL and data integration",
+      "expected_priority": "high"
+    },
+    {
+      "id": "WP-4",
+      "subject": "Duplicate container records after source migration",
+      "body": "Since the import manifest source system was migrated last weekend, we see duplicate container records in IMPORT_MANIFEST (around 3,200 duplicates). The customs reconciliation report no longer matches the terminal system. Can the data quality team check the deduplication rules?",
+      "expected_team": "Data quality",
+      "expected_priority": "medium"
+    },
+    {
+      "id": "WP-5",
+      "subject": "Q3 export volumes by country for board pack",
+      "body": "Could you prepare a one-off extract of monthly export container volumes by destination country for Q3, split by terminal? It is needed for the board pack at the end of next week. Contact me at omar.haddad@portgroup-example.ae if anything is unclear.",
+      "expected_team": "Business data request (Reporting and BI)",
+      "expected_priority": "low"
+    }
+  ],
+  "questions": [
+    "How do I request read access to a Snowflake schema?",
+    "The nightly ETL job failed. What are the first triage steps?",
+    "Can container data be copied to a cloud environment outside the UAE for analysis?"
+  ]
+}

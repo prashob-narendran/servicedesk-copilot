@@ -1,0 +1,150 @@
+{
+  "member": "Swami Vivek Bakal (2025AF05121)",
+  "tickets": [
+    {
+      "id": "SW-1",
+      "subject": "Learner cannot open enrolled course",
+      "expected_team": "Access and accounts",
+      "expected_priority": "medium",
+      "queue": "Sales and Pre-Sales",
+      "queue_confidence": 0.9576,
+      "needs_review": false,
+      "priority": "medium",
+      "sentiment": "neutral",
+      "masked": [
+        "PERSON",
+        "PERSON",
+        "EMAIL"
+      ],
+      "summary": "[PERSON_1] cannot access enrolled 'EV Battery Safety – Level 2' course, receiving “not authorised” error; manager approved enrolment and assessment is due Friday.",
+      "reply_grounded": false,
+      "reply_sources": [],
+      "reply": "The knowledge base doesn't cover this question. Please escalate to a senior agent or check with the relevant team.",
+      "latency_ms": 8482
+    },
+    {
+      "id": "SW-2",
+      "subject": "Learning platform down at dealer training centre",
+      "expected_team": "Platform operations (incident)",
+      "expected_priority": "high",
+      "queue": "Returns and Exchanges",
+      "queue_confidence": 0.9359,
+      "needs_review": false,
+      "priority": "high",
+      "sentiment": "negative",
+      "masked": [
+        "PERSON"
+      ],
+      "summary": "Learning platform down at dealer training centre, error 503 for 120 [PERSON_1] in scheduled certification session since 09:10—urgent fix required.",
+      "reply_grounded": true,
+      "reply_sources": [
+        "Workplace Runbook – Platform Incidents and Client SLAs (illustrative)",
+        "Past ticket: Assistance Required for SaaS Platform",
+        "Past ticket: Assistance Required for Analytics Platform Malfunction",
+        "Past ticket: Login Problem with SaaS Platform"
+      ],
+      "reply": "Hi [PERSON_1],\n\nI’m sorry to hear that the learning platform is down and that the certification session cannot proceed. We’ve opened a P1 case in Salesforce and linked all related client cases to it [1]. Within the next 30 minutes we’ll publish a notice on the platform status page and email the main contact with the current status [1]. We’ll keep you updated every hour until the service is restored and will send a short incident report within three business days [1].\n\nPlease let me know if you need to reschedule the certification session or if there are any additional details we should note.\n\nThank you for your patience.",
+      "latency_ms": 7555
+    },
+    {
+      "id": "SW-3",
+      "subject": "Course progress not saved",
+      "expected_team": "Product and usability",
+      "expected_priority": "medium",
+      "queue": "Product Support",
+      "queue_confidence": 0.3324,
+      "needs_review": true,
+      "priority": "medium",
+      "sentiment": "negative",
+      "masked": [
+        "PERSON",
+        "PERSON"
+      ],
+      "summary": "Course progress not saved: [PERSON_1] loses module progress upon closing and reopening the [PERSON_2], requiring a restart; urgent request to enable resume functionality.",
+      "reply_grounded": false,
+      "reply_sources": [],
+      "reply": "The knowledge base doesn't cover this question. Please escalate to a senior agent or check with the relevant team.",
+      "latency_ms": 8481
+    },
+    {
+      "id": "SW-4",
+      "subject": "Video lessons stuck loading in Chrome",
+      "expected_team": "Technical support",
+      "expected_priority": "medium",
+      "queue": "IT Support",
+      "queue_confidence": 0.6559,
+      "needs_review": false,
+      "priority": "medium",
+      "sentiment": "neutral",
+      "masked": [],
+      "summary": "Video lessons in the brake systems course are stuck at 0% loading in Chrome for the user, but play fine in Edge; urgent help needed.",
+      "reply_grounded": true,
+      "reply_sources": [
+        "Workplace Runbook – Platform Incidents and Client SLAs (illustrative)",
+        "Workplace SOP – Learning Platform Access and SSO Issues (illustrative)",
+        "Past ticket: Investment Dashboard Loading Issue",
+        "Past ticket: Sync Concern"
+      ],
+      "reply": "Dear [PERSON_1],\n\nThank you for letting us know that the brake‑systems videos are stuck at 0 % in Chrome while working fine in Edge.\n\n**Next steps**  \n1. Disable any browser extensions in Chrome that might block media playback.  \n2. Ensure Chrome allows third‑party cookies for the video‑player domain (you can find this in Settings → Privacy → Cookies).  \n3. After making these changes, reload the course and let us know the result.  \n4. If the issue persists, please send us the Chrome version you are using and a screenshot of the console (open with F12 → Console) so we can investigate further.\n\nWe’ll follow up once we receive that information.  \n\nBest regards,  \nTechServ Support",
+      "latency_ms": 7190
+    },
+    {
+      "id": "SW-5",
+      "subject": "SSO users cannot log in after migration",
+      "expected_team": "Access and SSO integration",
+      "expected_priority": "high",
+      "queue": "Technical Support",
+      "queue_confidence": 0.4676,
+      "needs_review": true,
+      "priority": "high",
+      "sentiment": "negative",
+      "masked": [
+        "PERSON",
+        "PHONE"
+      ],
+      "summary": "SSO users cannot log in to the learning platform post-migration, receiving a 403 error; 300 users affected, urgent help requested by IT admin [PERSON_1] ([PHONE_1]).",
+      "reply_grounded": true,
+      "reply_sources": [
+        "Workplace SOP – Learning Platform Access and SSO Issues (illustrative)",
+        "Past ticket: Login Problem with SaaS Platform",
+        "Past ticket: Problem with Login on SaaS Platform",
+        "Past ticket: Problem with Login SaaS Platform"
+      ],
+      "reply": "Hi [PERSON_1],\n\nI’m sorry to hear about the 403 errors after the SSO migration. This is a P1 incident, so we’re prioritising a quick fix.\n\n**Next steps**  \n1. Please provide the new IdP’s metadata file (or the SSO certificate and user‑identifier mapping).  \n2. We’ll update the SSO configuration for your client and test with a single user account before rolling it out to all 300 users.  \n\nI’ll keep you posted as we make progress and will confirm the fix as soon as it’s live. If you can share the metadata today, we can aim to resolve it within the next few hours.\n\nThank you for your cooperation.",
+      "latency_ms": 7275
+    }
+  ],
+  "questions": [
+    {
+      "question": "A learner sees 'not authorised' on a course they enrolled in. What should I check?",
+      "grounded": false,
+      "answer": "The knowledge base doesn't cover this question. Please escalate to a senior agent or check with the relevant team.",
+      "sources": [],
+      "latency_ms": 5979
+    },
+    {
+      "question": "What do we do when the learning platform is down for a client?",
+      "grounded": true,
+      "answer": "When the learning platform is down for a [PERSON_1]:\n\n1. Check the cloud provider's health dashboard and our monitoring alerts. [1]  \n2. Raise a P1 case in Salesforce and link all related client cases to it. [1]  \n3. Post a notice on the platform status page within 30 minutes and email the client’s main contact. [1]  \n4. If a live training or certification session is affected, offer to reschedule it without charge. [1]  \n5. Update the client every hour until service is restored, and send a short incident report within 3 business days. [1]",
+      "sources": [
+        "Workplace Runbook – Platform Incidents and Client SLAs (illustrative)",
+        "Past ticket: Assistance Required for SaaS Platform",
+        "Past ticket: Support ticket",
+        "Past ticket: Digital Platform Outage Problem"
+      ],
+      "latency_ms": 5029
+    },
+    {
+      "question": "How quickly must we respond to a P1 case for an enterprise client?",
+      "grounded": true,
+      "answer": "Respond within 30 minutes. [1]",
+      "sources": [
+        "Workplace Runbook – Platform Incidents and Client SLAs (illustrative)",
+        "SOP – VPN and Remote Access Troubleshooting",
+        "TechServ Incident Management Process",
+        "Workplace Runbook – Digital Banking Downtime (illustrative)"
+      ],
+      "latency_ms": 3787
+    }
+  ]
+}

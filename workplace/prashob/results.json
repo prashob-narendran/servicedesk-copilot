@@ -1,0 +1,156 @@
+{
+  "member": "Prashob N (2025AE05006)",
+  "tickets": [
+    {
+      "id": "WP-1",
+      "subject": "Read access to terminal KPI schema in Snowflake",
+      "expected_team": "Data access (Snowflake platform)",
+      "expected_priority": "low",
+      "queue": "Customer Service",
+      "queue_confidence": 0.3855,
+      "needs_review": true,
+      "priority": "medium",
+      "sentiment": "neutral",
+      "masked": [
+        "PERSON",
+        "EMAIL",
+        "PERSON"
+      ],
+      "summary": "Request: grant read-only access to PORT_OPS_DW.TERMINAL_KPI schema in Snowflake for analyst [PERSON_1] ([EMAIL_1]); manager [PERSON_2] approved, needed for weekly terminal productivity report.",
+      "reply_grounded": true,
+      "reply_sources": [
+        "Workplace SOP – Snowflake and Reporting Access Requests (illustrative)",
+        "Workplace SOP – Snowflake and Reporting Access Requests (illustrative)",
+        "Workplace SOP – Snowflake and Reporting Access Requests (illustrative)",
+        "Workplace SOP – Snowflake and Reporting Access Requests (illustrative)"
+      ],
+      "reply": "Hi [PERSON_1],\n\nThank you for the request. Your line manager, [PERSON_2], has approved the business need and we’ve verified that the data domain is non‑personal, so the data governance approval is not required. We’ll add you to the existing Snowflake role that provides read‑only access to the PORT_OPS_DW.TERMINAL_KPI schema.  \n\nAccording to our SOP, read‑only access is typically granted within 2 business days of the final approval. You should receive an email confirmation by the end of that period.\n\nWe’ll keep you posted if anything changes.  \n\nBest regards,  \nTechServ Support",
+      "latency_ms": 5303
+    },
+    {
+      "id": "WP-2",
+      "subject": "Country-wise throughput dashboard shows wrong TEU figures",
+      "expected_team": "Reporting and BI",
+      "expected_priority": "high",
+      "queue": "Product Support",
+      "queue_confidence": 0.4788,
+      "needs_review": true,
+      "priority": "medium",
+      "sentiment": "negative",
+      "masked": [
+        "PHONE"
+      ],
+      "summary": "Country-wise throughput dashboard shows 18% lower TEU for Terminal 2 in October; CEO office needs urgent investigation for tomorrow’s review, please call [PHONE_1].",
+      "reply_grounded": false,
+      "reply_sources": [],
+      "reply": "The knowledge base doesn't cover this question. Please escalate to a senior agent or check with the relevant team.",
+      "latency_ms": 2100
+    },
+    {
+      "id": "WP-3",
+      "subject": "Nightly ETL job VESSEL_CALLS_LOAD failed",
+      "expected_team": "ETL and data integration",
+      "expected_priority": "high",
+      "queue": "Technical Support",
+      "queue_confidence": 0.4093,
+      "needs_review": true,
+      "priority": "medium",
+      "sentiment": "negative",
+      "masked": [],
+      "summary": "Nightly ETL job VESSEL_CALLS_LOAD failed due to Snowflake warehouse timeout, affecting berth utilisation and vessel turnaround reports; urgent restart and root‑cause investigation required.",
+      "reply_grounded": true,
+      "reply_sources": [
+        "Workplace Runbook – ETL Failures, Data Discrepancies and Data Residency (illustrative)",
+        "Past ticket: Service Interruption",
+        "Past ticket: Several Tools Failed to Function Properly This Morning",
+        "Past ticket: Report of SaaS Platform Disruption"
+      ],
+      "reply": "Dear [PERSON_1],\n\nThank you for reporting the failure of the nightly VESSEL_CALLS_LOAD ETL job. We’ve noted the Snowflake warehouse timeout that caused the berth utilisation and vessel turnaround reports to remain outdated.\n\nPer our first‑triage steps [1]:\n1. We are reviewing the orchestration run log and the Snowflake query history to identify the exact timeout error and determine whether the warehouse size or query tuning is needed.\n2. We will re‑run the task only after confirming that the source data for the night’s loads has fully arrived.\n3. A data‑delay notice will be posted for the affected reports to inform the operations team.\n\nWe’ll keep you updated on our progress and any actions needed from your side. If you have additional log details or observations, please forward them at your convenience.\n\nBest regards,  \nTechServ Support",
+      "latency_ms": 2363
+    },
+    {
+      "id": "WP-4",
+      "subject": "Duplicate container records after source migration",
+      "expected_team": "Data quality",
+      "expected_priority": "medium",
+      "queue": "Returns and Exchanges",
+      "queue_confidence": 0.7056,
+      "needs_review": false,
+      "priority": "medium",
+      "sentiment": "negative",
+      "masked": [],
+      "summary": "Duplicate container records (~3,200) appear in IMPORT_MANIFEST post‑migration, causing customs reconciliation report mismatches; data quality team urgently needs to review deduplication rules.",
+      "reply_grounded": true,
+      "reply_sources": [
+        "Past ticket: Issues with Recent Inconsistent Data Analysis Reports",
+        "Past ticket: Campaign Metrics Problem",
+        "Past ticket: Problem Reporting",
+        "Past ticket: Problem with Unreliable Digital Engagement Statistics"
+      ],
+      "reply": "Dear Customer,\n\nI understand that after the recent source‑system migration you’re seeing ~3,200 duplicate container records in IMPORT_MANIFEST, which is affecting your customs reconciliation report. I’ve forwarded this to our Data Quality team and they will review the deduplication rules to resolve the issue. We’ll keep you updated as soon as we have a clear next step.\n\nThank you for bringing this to our attention. If you have any additional logs or details that could help, please let us know.\n\nBest regards,  \nTechServ Support",
+      "latency_ms": 1788
+    },
+    {
+      "id": "WP-5",
+      "subject": "Q3 export volumes by country for board pack",
+      "expected_team": "Business data request (Reporting and BI)",
+      "expected_priority": "low",
+      "queue": "Customer Service",
+      "queue_confidence": 0.3787,
+      "needs_review": true,
+      "priority": "low",
+      "sentiment": "neutral",
+      "masked": [
+        "EMAIL"
+      ],
+      "summary": "Prepare Q3 monthly export container volumes by destination country, split by terminal, for board pack due next week; contact [EMAIL_1] if unclear.",
+      "reply_grounded": true,
+      "reply_sources": [
+        "Past ticket: Inquiry on Digital Strategies for Brand Growth with Pro Tools and Docker",
+        "TechServ Incident Management Process",
+        "TechServ SLA and Escalation Policy",
+        "Past ticket: Include Voice Text Integration"
+      ],
+      "reply": "Dear [EMAIL_1],\n\nThank you for your request. We’ve logged the ticket (Priority P4) and will begin gathering the Q3 export volumes by destination country, split by terminal, as outlined. Our team will compile the data and deliver the one‑off extract to you by the end of next week, in time for the board pack.\n\nWe will keep you updated daily and will notify you once the report is ready for download. If you need any adjustments or have additional questions, feel free to reply to this ticket.\n\nBest regards,  \nTechServ Support Team",
+      "latency_ms": 2209
+    }
+  ],
+  "questions": [
+    {
+      "question": "How do I request read access to a Snowflake schema?",
+      "grounded": true,
+      "answer": "1. Submit a request in ServiceNow using the **\"Data Platform Access\"** catalogue item.  \n2. In the request form, specify:\n   - **Platform**: Snowflake  \n   - **Database** and **Schema** you need access to  \n   - **Access level**: read  \n   - **Business justification**  \n3. Await approvals: line manager → data owner → (if personal data) data governance office [4].  \n4. Once all approvals are obtained, read‑only access will be granted within ~2 business days [1].",
+      "sources": [
+        "Workplace SOP – Snowflake and Reporting Access Requests (illustrative)",
+        "Workplace SOP – Snowflake and Reporting Access Requests (illustrative)",
+        "Workplace SOP – Snowflake and Reporting Access Requests (illustrative)",
+        "Workplace SOP – Snowflake and Reporting Access Requests (illustrative)"
+      ],
+      "latency_ms": 743
+    },
+    {
+      "question": "The nightly ETL job failed. What are the first triage steps?",
+      "grounded": true,
+      "answer": "1. Check the orchestration tool’s run log for the failed task and the exact error message.  \n2. Check Snowflake query history for the failed statement; warehouse timeouts usually mean the warehouse size or the query needs tuning.  \n3. Confirm whether upstream source files or tables arrived on time.  \n4. Re‑run the failed task only if the source data is complete; otherwise wait for the source and inform the business owner.  \n5. Identify downstream reports and dashboards that depend on the pipeline, and post a data‑delay notice for them.【1】",
+      "sources": [
+        "Workplace Runbook – ETL Failures, Data Discrepancies and Data Residency (illustrative)",
+        "Past ticket: Several Tools Failed to Function Properly This Morning",
+        "Past ticket: Service Interruption",
+        "Past ticket: Support ticket"
+      ],
+      "latency_ms": 839
+    },
+    {
+      "question": "Can container data be copied to a cloud environment outside the UAE for analysis?",
+      "grounded": true,
+      "answer": "No, copying container data to a cloud environment outside the UAE is not permitted. [1]",
+      "sources": [
+        "Workplace Runbook – ETL Failures, Data Discrepancies and Data Residency (illustrative)",
+        "Past ticket: Integration of Oracle Database 19c Docker for Enhancing Investment Analytics",
+        "Past ticket: Concerns About Data Analytics Application Performance",
+        "Past ticket: Enhancing Investments with Google Cloud"
+      ],
+      "latency_ms": 660
+    }
+  ]
+}
